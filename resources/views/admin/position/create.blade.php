@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="card shadow p-3">
-    <form action="/position" method="POST">
+    <form action="/admin/position" method="POST">
         @csrf
         <div class="form-group">
             <label for="name" class="control-label mb-1">Name</label>
@@ -24,7 +24,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <a href="/position" class="btn btn-danger rounded">Back</a>
+            <a href="/admin/position" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-primary rounded">Submit</button>
         </div>
     </form>

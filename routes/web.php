@@ -27,9 +27,11 @@ Route::get('/dashboard', function () {
 
 // admin route
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/account', [UserController::class, 'index']);
-    Route::get('/account/{user}/edit', [UserController::class, 'edit']);
-    Route::put('/account/{user}', [UserController::class, 'update']);
-    Route::resource('/position', PositionController::class)->except('show');
+    Route::prefix('admin')->group(function () {
+        Route::get('/account', [UserController::class, 'index']);
+        Route::get('/account/{user}/edit', [UserController::class, 'edit']);
+        Route::put('/account/{user}', [UserController::class, 'update']);
+        Route::resource('/position', PositionController::class)->except('show');
+    });
 });
 require __DIR__ . '/auth.php';

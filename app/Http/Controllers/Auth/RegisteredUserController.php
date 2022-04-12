@@ -48,6 +48,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect('/login')->with('success', 'Thanks for Sign Up, report to admin now!');
+        return redirect('/petugas/login')->with('success', 'Thanks for Sign Up, report to admin now!');
     }
 }

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<a href="/position/create" class="btn btn-primary mb-2 rounded">+ New position</a>
+<a href="/admin/position/create" class="btn btn-primary mb-2 rounded">+ New position</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -29,11 +29,10 @@
             {{ session('delete') }}
         </div>
         @endif
-
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th width="200px">No</th>
                     <th>Name</th>
                     <th width="200px">Option</th>
                 </tr>
@@ -42,16 +41,17 @@
                 @if($data->count())
                 @foreach($data as $row)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ ++$i }}</td>
                     <td>{{ $row->name }}</td>
                     <td>
-                        <form action="/position/{{ $row->id }}" method="post">
+                        <form action="/admin/position/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/position/{{ $row->id }}/edit" class="btn btn-warning rounded">
-                                Edit
+                            <a href="/admin/position/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                                <i class="fa fa-pencil"></i>
                             </a>
-                            <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); ">Delete</button>
+                            <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -63,6 +63,7 @@
                 @endif
             </tbody>
         </table>
+        {{ $data->links() }}
     </div>
 </div>
 @endsection

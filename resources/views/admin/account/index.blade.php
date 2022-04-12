@@ -15,6 +15,12 @@
         {{ session('success') }}
     </div>
     @endif
+    
+    @if(session('update'))
+    <div class="alert alert-warning" role="alert">
+        {{ session('update') }}
+    </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -39,7 +45,7 @@
                     <td>{{ $row->position->name }}</td>
                     @endif
                     <td>
-                        <a href="/account/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                        <a href="/admin/account/{{ $row->id }}/edit" class="btn btn-warning rounded">
                             Edit
                         </a>
                     </td>

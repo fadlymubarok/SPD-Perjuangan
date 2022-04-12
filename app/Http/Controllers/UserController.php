@@ -31,6 +31,6 @@ class UserController extends Controller
         $request->position_id = (int)$request->position_id;
 
         $user->update($request->all());
-        return redirect('/account')->with('success', 'Account updated successfully');
+        return redirect('/admin/account')->with('update', 'Account updated successfully');
     }
 }
