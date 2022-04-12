@@ -7,13 +7,13 @@
     <title>Login - Spd perjuangan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="assets/admin-page/vendors/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/admin-page/vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/admin-page/vendors/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/admin-page/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/admin-page/vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../assets/admin-page/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/admin-page/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/admin-page/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../assets/admin-page/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../assets/admin-page/vendors/selectFX/css/cs-skin-elastic.css">
 
-    <link rel="stylesheet" href="assets/admin-page/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/admin-page/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -28,7 +28,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="/login" class="h1 text-light">
+                    <a href="/petugas/login" class="h1 text-light">
                         Login
                     </a>
                 </div>
@@ -41,7 +41,7 @@
                     @if($errors->any())
                     <div class="alert alert-danger">Email/Password is invalid</div>
                     @endif
-                    <form action="/login" method="POST">
+                    <form action="/petugas/login" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Email address</label>
@@ -52,13 +52,10 @@
                             <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
                         </label>
-                        <label class="pull-right">
-                            <a href="/forgot-password">Forgotten Password?</a>
-                        </label>
 
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30 morder">Sign In</button>
                         <div class="login-link m-t-15 text-center pt-2 mt-3 border-top">
-                            <p>Don't have account ? <a href="/register" class="text-danger"> Sign Up Here</a></p>
+                            <p>Don't have account ? <a href="/petugas/register" class="text-danger"> Sign Up Here</a></p>
 
                         </div>
                     </form>
@@ -68,10 +65,10 @@
     </div>
 
 
-    <script src="assets/admin-page/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="assets/admin-page/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/admin-page/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/admin-page/assets/js/main.js"></script>
+    <script src="../assets/admin-page/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/admin-page/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../assets/admin-page/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/admin-page/assets/js/main.js"></script>
 
 
 </body>

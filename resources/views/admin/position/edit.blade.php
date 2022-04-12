@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="card shadow p-3">
-    <form action="/position/{{ $data->id}}" method="POST">
+    <form action="/admin/position/{{ $data->id }}" method="POST">
         @csrf
         @method('put')
         <div class="form-group">
@@ -25,7 +25,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <a href="/position" class="btn btn-danger rounded">Back</a>
+            <a href="/admin/position" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-warning rounded">Update</button>
         </div>
     </form>

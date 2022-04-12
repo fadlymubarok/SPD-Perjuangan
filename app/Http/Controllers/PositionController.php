@@ -15,8 +15,14 @@ class PositionController extends Controller
     public function index()
     {
         $title = 'Position';
-        $data = Position::all();
-        return view('admin.position.index', compact('title', 'data'));
+        $page = 1;
+        $search = Position::latest();
+        if (Request('search')) {
+            $search->where('name', 'like', '%' . Request('search') . '%');
+        }
+        $data = $search->paginate($page);
+        return view('admin.position.index', compact('title', 'data'))
+            ->with('i', (Request()->input('page', 1) - 1) * $page);
     }
 
     /**
@@ -43,7 +49,7 @@ class PositionController extends Controller
         ]);
 
         Position::create($validate);
-        return redirect('/position')->with('success', 'Position saved successfully');
+        return redirect('/admin/position')->with('success', 'Position saved successfully');
     }
 
     /**
@@ -52,10 +58,10 @@ class PositionController extends Controller
      * @param  \App\Models\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function show(Position $position)
-    {
-        //
-    }
+    // public function show(Position $position)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +97,7 @@ class PositionController extends Controller
 
         $validate = $request->validate($rule);
         $position->update($validate);
-        return redirect('/position')->with('update', 'Position updated successfully');
+        return redirect('/admin/position')->with('update', 'Position updated successfully');
     }
 
     /**
@@ -103,6 +109,6 @@ class PositionController extends Controller
     public function destroy(Position $position)
     {
         $position->delete();
-        return redirect('/position')->with('delete', 'Position deleted successfully');
+        return redirect('/admin/position')->with('delete', 'Position deleted successfully');
     }
 }
