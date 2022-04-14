@@ -34,4 +34,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/position', PositionController::class)->except('show');
     });
 });
+
+// petugas route
+Route::group(['middleware' => ['auth']], function () {
+    Route::prefix('petugas')->group(function () {
+        // route keuangan
+        Route::resource('/keuangan', FinanceController::class)->except('show');
+
+        // route berita
+        Route::resource('/berita', NewsController::class)->except('show');
+    });
+});
+
 require __DIR__ . '/auth.php';
