@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ProfileDesaController;
+use App\Models\ProfileDesa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/account/{user}/edit', [UserController::class, 'edit']);
         Route::put('/account/{user}', [UserController::class, 'update']);
         Route::resource('/position', PositionController::class)->except('show');
+
+        // Route profile desa
+        Route::resource('/profile', ProfileDesaController::class)->except('show');
     });
 });
 

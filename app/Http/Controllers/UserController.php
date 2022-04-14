@@ -10,7 +10,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::where('is_admin', 0)->get();
+        $search = User::where('is_admin', 0);
+        if (Request('search')) {
+            $search->orWhere('name', 'like', '%' . Request('search') . '%')
+                ->orWhere('email', 'like', '%' . Request('search') . '%');
+        }
+        $data = $search->get();
         $title = 'Account Data';
         return view('admin.account.index', compact('data', 'title'));
     }
