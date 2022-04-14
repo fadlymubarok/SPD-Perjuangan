@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $title }} - Spd perjuangan</title>
+    <title>{{ $title }} - {{ $name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    {!! $logo !!}
 
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/font-awesome/css/font-awesome.min.css">
@@ -18,7 +18,6 @@
 
 
     <link rel="stylesheet" href="../../../assets/admin-page/assets/css/style.css">
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 </head>
@@ -49,6 +48,7 @@
                     </li>
                     @can('admin')
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
+                    <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile Desa</a></li>
                     <li class="{{ Request()->is('admin/account*') ? 'active' : '' }}"><a href="/admin/account"> <i class="menu-icon ti-user"></i>Account data</a></li>
                     <li class="{{ Request()->is('admin/position*') ? 'active' : '' }}"><a href="/admin/position"> <i class="menu-icon ti-target"></i>Position</a></li>
                     @endcan

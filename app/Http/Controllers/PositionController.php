@@ -15,7 +15,7 @@ class PositionController extends Controller
     public function index()
     {
         $title = 'Position';
-        $page = 1;
+        $page = 10;
         $search = Position::latest();
         if (Request('search')) {
             $search->where('name', 'like', '%' . Request('search') . '%');

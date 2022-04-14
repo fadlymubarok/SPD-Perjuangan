@@ -10,18 +10,24 @@
 
 @section('content')
 <div class="card shadow p-3">
-    @if(session('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
-    @endif
-    
-    @if(session('update'))
-    <div class="alert alert-warning" role="alert">
-        {{ session('update') }}
-    </div>
-    @endif
     <div class="table-responsive">
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if(session('update'))
+        <div class="alert alert-warning" role="alert">
+            {{ session('update') }}
+        </div>
+        @endif
+        <div class="d-flex w-100 justify-content-end">
+            <form class="search-form d-flex" method="get" action="/admin/account">
+                <label for="search" class="mt-1">Search:</label>
+                <input class="form-control ml-sm-2 mb-2" type="text" name="search" placeholder="Search ..." aria-label="Search">
+            </form>
+        </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -46,7 +52,7 @@
                     @endif
                     <td>
                         <a href="/admin/account/{{ $row->id }}/edit" class="btn btn-warning rounded">
-                            Edit
+                            <i class="fa fa-pencil"></i>
                         </a>
                     </td>
                 </tr>
