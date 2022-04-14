@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PositionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\PositionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +47,4 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/berita', NewsController::class)->except('show');
     });
 });
-
 require __DIR__ . '/auth.php';
