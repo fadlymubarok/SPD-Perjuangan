@@ -7,7 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title }} - {{ $name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {!! $logo !!}
+
+    @if($logo > 0)
+    <link rel="icon" href="{{ url('storage/logo/' . $logo) }}">
+    @else
+    <link rel="icon" href="logo ilang">
+    @endif
 
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/font-awesome/css/font-awesome.min.css">
@@ -46,17 +51,10 @@
                     <li class="mt-2 {{ Request()->is('dashboard') ? 'active' : '' }}">
                         <a href="/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
-                    @can('admin')
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
                     <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile Desa</a></li>
-                    <li class="{{ Request()->is('admin/account*') ? 'active' : '' }}"><a href="/admin/account"> <i class="menu-icon ti-user"></i>Account data</a></li>
-                    <li class="{{ Request()->is('admin/position*') ? 'active' : '' }}"><a href="/admin/position"> <i class="menu-icon ti-target"></i>Position</a></li>
-                    @endcan
-                    @can('petugas')
-                    <h3 class="menu-title mt-n2 pt-0">Petugas Page</h3>
-                    <li class="{{ Request()->is('petugas/keuangan*') ? 'active' : '' }}"><a href="/petugas/keuangan"> <i class="menu-icon ti-wallet"></i>Keuangan</a></li>
-                    <li class="{{ Request()->is('petugas/berita*') ? 'active' : '' }}"><a href="/petugas/berita"> <i class="menu-icon ti-folder"></i>Berita desa</a></li>
-                    @endcan
+                    <li class="{{ Request()->is('admin/news*') ? 'active' : '' }}"><a href="/admin/news"> <i class="menu-icon ti-folder"></i>Berita desa</a></li>
+                    <li class="{{ Request()->is('admin/category*') ? 'active' : '' }}"><a href="/admin/category"> <i class="menu-icon ti-list"></i>Kategori</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

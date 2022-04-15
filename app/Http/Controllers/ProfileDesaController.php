@@ -19,16 +19,18 @@ class ProfileDesaController extends Controller
         $data = ProfileDesa::all();
 
         // profile
-        $name = ProfileDesa::get('name');
-        if ($name->count() > 0) {
-            $name = $name[0]['name'];
+        $cek_nama = ProfileDesa::count();
+        if ($cek_nama > 0) {
+            $name = ProfileDesa::first();
+            $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $logo = ProfileDesa::get('picture');
-        if ($logo->count() > 0) {
-            $logo = `<link rel="icon" href="{{ url('storage/logo/$logo[0]['picture']') }}">`;
+        $cek_logo = ProfileDesa::count();
+        if ($cek_logo > 0) {
+            $logo = ProfileDesa::first();
+            $logo = $logo->picture;
         } else {
             $logo = '';
         }
@@ -63,7 +65,7 @@ class ProfileDesaController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|min:5|max:255',
+            'name' => 'required|unique:profile_desa|min:5|max:255',
             'picture' => 'required|file|image|max:2048'
         ]);
 

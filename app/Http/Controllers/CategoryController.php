@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Category;
 use App\Models\ProfileDesa;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +16,12 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $title = 'news';
-        $page = 10;
-        $search = News::latest();
+        $title = 'category';
+        $search = Category::latest();
         if (Request('search')) {
             $search->where('name', 'like', '%' . Request('search') . '%');
         }
-        $data = $search->paginate($page);
+        $data = $search->get();
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -39,9 +39,7 @@ class NewsController extends Controller
         } else {
             $logo = '';
         }
-
-        return view('admin.news.index', compact('title', 'data', 'name', 'logo'))
-            ->with('i', (Request()->input('page', 1) - 1) * $page);
+        return view('admin.category.index', compact('title', 'name', 'logo', 'data'));
     }
 
     /**
@@ -51,8 +49,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $title = 'Tambah news';
-        return view('admin.news.create', compact('title'));
+        //
     }
 
     /**
@@ -63,21 +60,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required'
-        ]);
-
-        News::create($validate);
-        return redirect('/admin/news')->with('success', 'News saved successfully');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(Category $category)
     {
         //
     }
@@ -85,43 +77,34 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit(Category $category)
     {
-        $data = $news;
-        $title = 'edit news';
-        return view('admin.news.edit', compact('title', 'data'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Category $category)
     {
-        $rule = [
-            'name' => 'required'
-        ];
-
-        $validate = $request->validate($rule);
-        $news->update($validate);
-        return redirect('/admin/news')->with('update', 'News updated successfully');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Category $category)
     {
-        $news->delete();
-        return redirect('/admin/news')->with('delete', 'News deleted successfully');
+        //
     }
 }

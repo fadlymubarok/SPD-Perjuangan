@@ -17,7 +17,7 @@
         <div class="d-flex w-100 justify-content-between">
             <div class="form-group w-50">
                 <label for="name" class="control-label mb-1">Name</label>
-                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="name position.." autofocus>
+                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="nama desa" autofocus>
                 @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
