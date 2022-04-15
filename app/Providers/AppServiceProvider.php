@@ -27,12 +27,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        Gate::define('admin', function (User $user) {
-            return $user->is_admin == 1;
-        });
-
-        Gate::define('petugas', function (User $user) {
-            return $user->is_admin == 0;
-        });
     }
 }

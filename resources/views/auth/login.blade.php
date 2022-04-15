@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login - Spd perjuangan</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../assets/admin-page/vendors/bootstrap/dist/css/bootstrap.min.css">
@@ -54,10 +54,6 @@
                         </label>
 
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30 morder">Sign In</button>
-                        <div class="login-link m-t-15 text-center pt-2 mt-3 border-top">
-                            <p>Don't have account ? <a href="/petugas/register" class="text-danger"> Sign Up Here</a></p>
-
-                        </div>
                     </form>
                 </div>
             </div>

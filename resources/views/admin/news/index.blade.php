@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<a href="/petugas/keuangan/create" class="btn btn-primary mb-2 rounded">+ Tambah Keuangan</a>
+<a href="/admin/news/create" class="btn btn-primary mb-2 rounded">+ Tambah Berita</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -42,12 +42,11 @@
                 @foreach($data as $row)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $row->name }}</td>
                     <td>
-                        <form action="/petugas/keuangan/{{ $row->id }}" method="post">
+                        <form action="/petugas/berita/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/petugas/keuangan/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/petugas/berita/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -58,7 +57,7 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="4" class="text-center">Belum Ada Data Keuangan</td>
+                    <td colspan="4" class="text-center">Belum Ada Data Berita</td>
                 </tr>
                 @endif
             </tbody>
