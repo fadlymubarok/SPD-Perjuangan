@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\FinanceController;
-use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ProfileDesaController;
+use App\Models\ProfileDesa;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,30 +21,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'title' => 'Dashboard'
-    ]);
-})->middleware(['auth'])->name('dashboard');
 
 // admin route
 Route::group(['middleware' => ['auth']], function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/account', [UserController::class, 'index']);
-        Route::get('/account/{user}/edit', [UserController::class, 'edit']);
-        Route::put('/account/{user}', [UserController::class, 'update']);
-        Route::resource('/position', PositionController::class)->except('show');
-    });
-});
+    Route::get('/dashboard', function () {
+        $data = ProfileDesa::all();
 
-// petugas route
-Route::group(['middleware' => ['auth']], function () {
-    Route::prefix('petugas')->group(function () {
-        // route keuangan
-        Route::resource('/keuangan', FinanceController::class)->except('show');
+        // profile
+        $cek_nama = ProfileDesa::count();
+        if ($cek_nama > 0) {
+            $name = ProfileDesa::first();
+            $name = $name->name;
+        } else {
+            $name = 'Spd Perjuangan';
+        }
+
+        $cek_logo = ProfileDesa::count();
+        if ($cek_logo > 0) {
+            $logo = ProfileDesa::first();
+            $logo = $logo->picture;
+        } else {
+            $logo = '';
+        }
+
+        return view('dashboard', [
+            'title' => 'Dashboard',
+            'name' => $name,
+            'logo' => $logo
+        ]);
+    })->name('dashboard');
+    Route::prefix('admin')->group(function () {
+        // Route profile desa
+        Route::resource('/profile', ProfileDesaController::class)->except('show');
+
+        // route kategori
+        Route::resource('/category', CategoryController::class)->except('show');
 
         // route berita
-        Route::resource('/berita', NewsController::class)->except('show');
+        Route::resource('/news', NewsController::class)->except('show');
     });
 });
+
+
 require __DIR__ . '/auth.php';

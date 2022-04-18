@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<a href="/petugas/berita/create" class="btn btn-primary mb-2 rounded">+ Tambah Berita</a>
+<a href="/admin/news/create" class="btn btn-primary mb-2 rounded">+ Tambah Berita</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -42,7 +42,6 @@
                 @foreach($data as $row)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $row->name }}</td>
                     <td>
                         <form action="/petugas/berita/{{ $row->id }}" method="post">
                             @csrf

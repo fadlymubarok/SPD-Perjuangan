@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('header')
 @include('layouts.partials.topbar')
 @endsection
@@ -9,7 +8,9 @@
 @endsection
 
 @section('content')
-<a href="/admin/position/create" class="btn btn-primary mb-2 rounded">+ New position</a>
+@if($data->count() == 0)
+<a href="/admin/profile/create" class="btn btn-primary mb-2 rounded">Create profile</a>
+@endif
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -34,6 +35,7 @@
                 <tr>
                     <th width="200px">No</th>
                     <th>Name</th>
+                    <th>Logo</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
@@ -41,13 +43,16 @@
                 @if($data->count())
                 @foreach($data as $row)
                 <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $row->name }}</td>
                     <td>
-                        <form action="/admin/position/{{ $row->id }}" method="post">
+                        <img src="{{ asset('storage/logo/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
+                    </td>
+                    <td>
+                        <form action="/admin/profile/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/admin/position/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/admin/profile/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -58,12 +63,11 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="4" class="text-center">Position not found</td>
+                    <td colspan="4" class="text-center">Profile nothing</td>
                 </tr>
                 @endif
             </tbody>
         </table>
-        {{ $data->links() }}
     </div>
 </div>
 @endsection

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('header')
 @include('layouts.partials.topbar')
 @endsection
@@ -9,7 +8,9 @@
 @endsection
 
 @section('content')
-<a href="/petugas/keuangan/create" class="btn btn-primary mb-2 rounded">+ Tambah Keuangan</a>
+@if($data->count() == 0)
+<a href="/admin/category/create" class="btn btn-primary mb-2 rounded">+ Create Category</a>
+@endif
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -33,7 +34,7 @@
             <thead>
                 <tr>
                     <th width="200px">No</th>
-                    <th>Nama</th>
+                    <th>Name</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
@@ -41,13 +42,13 @@
                 @if($data->count())
                 @foreach($data as $row)
                 <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $row->name }}</td>
                     <td>
-                        <form action="/petugas/keuangan/{{ $row->id }}" method="post">
+                        <form action="/admin/category/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/petugas/keuangan/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/admin/category/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -58,12 +59,11 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="4" class="text-center">Belum Ada Data Keuangan</td>
+                    <td colspan="4" class="text-center">category nothing</td>
                 </tr>
                 @endif
             </tbody>
         </table>
-        {{ $data->links() }}
     </div>
 </div>
 @endsection

@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::prefix('petugas')->group(function () {
-        Route::get('/register', [RegisteredUserController::class, 'create'])
-            ->name('register');
-
-        Route::post('/register', [RegisteredUserController::class, 'store']);
-
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])
             ->name('login');
 
         Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+        // Route::get('/register', [RegisteredUserController::class, 'create'])
+        //     ->name('register');
+
+        // Route::post('/register', [RegisteredUserController::class, 'store']);
+
 
         // Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         //             ->name('password.request');
@@ -53,6 +54,6 @@ Route::middleware('guest')->group(function () {
 
 //     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 // });

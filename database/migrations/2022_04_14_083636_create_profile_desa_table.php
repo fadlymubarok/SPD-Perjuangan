@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFinancesTable extends Migration
+class CreateProfileDesaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateFinancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('finances', function (Blueprint $table) {
+        Schema::create('profile_desa', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 25);
+            $table->string('name', 40);
+            $table->string('picture', 30);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateFinancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('finances');
+        Schema::dropIfExists('profile_desas');
     }
 }
