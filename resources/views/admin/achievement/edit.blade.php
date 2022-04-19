@@ -12,12 +12,12 @@
     </div>
 </div>
 <div class="card shadow p-3">
-    <form action="/admin/news/{{ $news->id }}" method="POST" enctype="multipart/form-data">
+    <form action="/admin/achievement/{{ $achievement->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group">
             <label for="title" class="control-label mb-1">Judul berita</label>
-            <input name="title" type="text" onchange="updateSlug();" class="form-control mb-2 @error('title') is-invalid @enderror" id="title" value="{{ old('title', $news->title) }}" autofocus>
+            <input name="title" type="text" onchange="updateSlug();" class="form-control mb-2 @error('title') is-invalid @enderror" id="title" value="{{ old('title', $achievement->title) }}" autofocus>
             @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="slug" class="control-label mb-1">Slug</label>
-            <input name="slug" type="text" class="form-control mb-2 @error('slug') is-invalid @enderror" id="slug" value="{{ old('title', $news->slug) }}">
+            <input name="slug" type="text" class="form-control mb-2 @error('slug') is-invalid @enderror" id="slug" value="{{ old('title', $achievement->slug) }}">
             @error('slug')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -34,13 +34,9 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="category_id" class=" form-control-label">Kategori</label>
-            <select name="category" class="form-control @error('category') is-invalid @enderror">
-                <option value="">Pilih kategori</option>
-                <option value="Umum" @if(old('Umum', $news->category) =='Umum' ) selected @endif>Umum</option>
-                <option value="Event" @if(old('Event', $news->category) =='Event' ) selected @endif>Event</option>
-            </select>
-            @error('category')
+            <label for="achievement_date" class=" form-control-label">Tanggal prestasi</label>
+            <input name="achievement_date" type="text" class="form-control mb-2 @error('achievement_date') is-invalid @enderror" id="achievement_date" value="{{ old('title', $achievement->achievement_date) }}">
+            @error('achievement_date')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -61,11 +57,11 @@
             @error('body')
             <p class="text-danger">{{ $message }}</p>
             @enderror
-            <input id="body" type="hidden" name="body" value="{{ old('body', $news->body) }}">
+            <input id="body" type="hidden" name="body" value="{{ old('body', $achievement->body) }}">
             <trix-editor input="body"></trix-editor>
         </div>
         <div class="form-group">
-            <a href="/admin/news" class="btn btn-danger rounded">Back</a>
+            <a href="/admin/achievement" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-warning rounded">Update</button>
         </div>
     </form>

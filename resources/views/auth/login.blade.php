@@ -28,20 +28,15 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="/petugas/login" class="h1 text-light">
+                    <a href="/admin/login" class="h1 text-light">
                         Login
                     </a>
                 </div>
                 <div class="login-form">
-                    @if(session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                    @endif
                     @if($errors->any())
                     <div class="alert alert-danger">Email/Password is invalid</div>
                     @endif
-                    <form action="/petugas/login" method="POST">
+                    <form action="/admin/login" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Email address</label>

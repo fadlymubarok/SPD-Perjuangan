@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<a href="/admin/news/create" class="btn btn-primary mb-2 rounded">+ Tambah Berita</a>
+<a href="/admin/question/create" class="btn btn-primary mb-2 rounded">+ Tambah Pertanyaan sementara</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -33,10 +33,9 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th width="150px">Judul</th>
-                        <th>Penjelasan singkat</th>
-                        <th>Kategori</th>
+                        <th width="100px">No</th>
+                        <th width="150px">Nama lengkap</th>
+                        <th>Alamat</th>
                         <th width="150px">Option</th>
                     </tr>
                 </thead>
@@ -45,14 +44,13 @@
                     @foreach($data as $row)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $row->title }}</td>
-                        <td>{{ $row->excerpt }}</td>
-                        <td>{{ $row->category }}</td>
+                        <td>{{ $row->name }}</td>
+                        <td>{{ $row->address }}</td>
                         <td>
-                            <form action="/admin/news/{{ $row->id }}" method="post">
+                            <form action="/admin/question/{{ $row->id }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="/admin/news/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                                <a href="/admin/question/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -63,7 +61,7 @@
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="5" class="text-center">Tidak Ada Berita</td>
+                        <td colspan="5" class="text-center">Tidak Ada Pertanyaan</td>
                     </tr>
                     @endif
                 </tbody>

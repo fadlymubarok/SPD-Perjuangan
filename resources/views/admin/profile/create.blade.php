@@ -14,26 +14,34 @@
 <div class="card shadow p-3">
     <form action="/admin/profile" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="d-flex w-100 justify-content-between">
-            <div class="form-group w-50">
-                <label for="name" class="control-label mb-1">Name</label>
-                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="nama desa" autofocus>
-                @error('name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+        <div class="form-group mb-2">
+            <label for="name" class="control-label">Nama desa</label>
+            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" autofocus>
+            @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
             </div>
+            @enderror
+        </div>
 
-            <div class="form-group w-50 ml-2">
-                <label for="picture" class="control-label mb-1">Logo</label>
-                <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror" placeholder="picture position.." autofocus>
-                @error('picture')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+        <div class="form-group mb-2">
+            <label for="address" class="control-label">Alamat desa</label>
+            <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" autofocus>
+            @error('address')
+            <div class="invalid-feedback">
+                {{ $message }}
             </div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="picture" class="control-label mb-0">Logo</label>
+            <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror" placeholder="picture position.." autofocus>
+            @error('picture')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <a href="/admin/profile" class="btn btn-danger rounded">Back</a>

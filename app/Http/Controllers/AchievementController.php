@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\ProfileDesa;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class ProfileDesaController extends Controller
+class AchievementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,13 @@ class ProfileDesaController extends Controller
      */
     public function index()
     {
-        $title = 'Profile desa';
-        $data = ProfileDesa::first();
+        $title = 'Prestasi desa';
+        $page = 10;
+        $search = Achievement::latest();
+        if (Request('search')) {
+            $search->where('name', 'like', '%' . Request('search') . '%');
+        }
+        $data = $search->paginate($page);
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -35,7 +42,8 @@ class ProfileDesaController extends Controller
             $logo = '';
         }
 
-        return view('admin.profile.index', compact('title', 'data', 'name', 'logo'));
+        return view('admin.achievement.index', compact('title', 'data', 'name', 'logo'))
+            ->with('i', (Request()->input('page', 1) - 1) * $page);
     }
 
     /**
@@ -45,9 +53,7 @@ class ProfileDesaController extends Controller
      */
     public function create()
     {
-        $title = 'buat profile';
-
-        $data = ProfileDesa::all();
+        $title = 'Tambah prestasi';
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -66,7 +72,7 @@ class ProfileDesaController extends Controller
             $logo = '';
         }
 
-        return view('admin.profile.create', compact('title', 'name', 'logo'));
+        return view('admin.achievement.create', compact('title', 'name', 'logo'));
     }
 
     /**
@@ -78,26 +84,30 @@ class ProfileDesaController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|unique:profile_desa|max:255',
-            'address' => 'required|max:255',
-            'picture' => 'required|file|image|max:2048'
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:news|max:255',
+            'achievement_date' => 'required',
+            'picture' => 'required|file|max:5024',
+            'body' => 'required'
         ]);
-
         $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/logo', $picture_name);
+
+        $request->file('picture')->storeAs('public/gambar_prestasi', $picture_name);
+
+        $validate['excerpt'] = Str::limit(strip_tags($request->body, 200));
 
         $validate['picture'] = $picture_name;
-        ProfileDesa::create($validate);
-        return redirect('/admin/profile')->with('success', 'Profile berhasil ditambah');
+        Achievement::create($validate);
+        return redirect('/admin/achievement')->with('success', 'Prestasi berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProfileDesa  $profileDesa
+     * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function show(ProfileDesa $profileDesa)
+    public function show(Achievement $achievement)
     {
         //
     }
@@ -105,14 +115,12 @@ class ProfileDesaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProfileDesa  $profileDesa
+     * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function edit($profile_id)
+    public function edit(Achievement $achievement)
     {
-        $title = 'Edit profile';
-        $data = ProfileDesa::findOrFail($profile_id);
-
+        $title = 'edit prestasi';
         // profile
         $cek_nama = ProfileDesa::count();
         if ($cek_nama > 0) {
@@ -130,56 +138,59 @@ class ProfileDesaController extends Controller
             $logo = '';
         }
 
-        return view('admin.profile.edit', compact('title', 'name', 'logo', 'data'));
+        return view('admin.achievement.edit', compact('title', 'name', 'logo', 'achievement'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProfileDesa  $profileDesa
+     * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $profile_id)
+    public function update(Request $request, Achievement $achievement)
     {
         $rule = [
-            'name' => 'required|min:5|max:255',
-            'address' => 'required|max:255',
-
+            'title' => 'required|max:40',
+            'achievement_date' => 'required',
+            'body' => 'required'
         ];
 
-        $profile = ProfileDesa::find($profile_id);
-        if ($request->name != $profile->name) {
-            $rule['name'] = 'required|unique:profile_desa|min:5|max:255';
+        if ($request->slug != $achievement->slug) {
+            $rule['slug'] = 'required|unique:achievements|max:255';
         }
 
-        if ($request->name != $profile->picture) {
-            $rule['picture'] = 'required|file|image|max:2048';
+        if ($request->file('picture') != $achievement->picture && $request->file('picture') != '') {
+            $rule['picture'] = 'required|file|max:5024';
         }
 
         $validate = $request->validate($rule);
 
-        if ($request->name != $profile->picture) {
+        if ($request->file('picture') != $achievement->picture && $request->file('picture') != '') {
             $picture_name = $request->file('picture')->getClientOriginalName();
-            $path = $request->file('picture')->storeAs('public/logo', $picture_name);
 
-            $validate['picture'] = $picture_name;
+            $request->file('picture')->storeAs('public/gambar_prestasi', $picture_name);
         }
-        ProfileDesa::where('id', $profile_id)->update($validate);
-        return redirect('/admin/profile')->with('update', 'Profile berhasil diupdate');
+
+        if ($request->body != $achievement->body) {
+            $validate['excerpt'] = Str::limit(strip_tags($request->body, 200));
+        }
+
+        $achievement->update($validate);
+
+        return redirect('/admin/achievement')->with('update', 'Prestasi berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProfileDesa  $profileDesa
+     * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function destroy($profile_id)
+    public function destroy(Achievement $achievement)
     {
-        $logo = ProfileDesa::where('id', $profile_id)->first();
-        File::delete('storage/logo/' . $logo->picture);
-        $logo = $logo->delete();
-        return redirect('/admin/profile')->with('delete', 'Profile berhasil dihapus');
+        File::delete('storage/gambar_prestasi/' . $achievement->picture);
+        $achievement->delete();
+        return redirect('/admin/achievement')->with('delete', 'Prestasi berhasil dihapus');
     }
 }

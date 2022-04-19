@@ -34,25 +34,22 @@
             <thead>
                 <tr>
                     <th width="200px">No</th>
-                    <th>Name</th>
-                    <th>Logo</th>
+                    <th>Nama desa</th>
+                    <th>Alamat</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
             <tbody>
-                @if($data->count())
-                @foreach($data as $row)
+                @if($data)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->name }}</td>
+                    <td>1</td>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->address }}</td>
                     <td>
-                        <img src="{{ asset('storage/logo/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
-                    </td>
-                    <td>
-                        <form action="/admin/profile/{{ $row->id }}" method="post">
+                        <form action="/admin/profile/{{ $data->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/admin/profile/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/admin/profile/{{ $data->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -60,7 +57,6 @@
                         </form>
                     </td>
                 </tr>
-                @endforeach
                 @else
                 <tr>
                     <td colspan="4" class="text-center">Profile nothing</td>
