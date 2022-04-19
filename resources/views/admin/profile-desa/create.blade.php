@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="card shadow p-3">
-    <form action="/admin/profile" method="POST" enctype="multipart/form-data">
+    <form action="/admin/profile-desa" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-2">
             <label for="name" class="control-label">Nama desa</label>

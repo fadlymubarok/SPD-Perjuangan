@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('header')
 @include('layouts.partials.topbar')
 @endsection
@@ -8,9 +9,7 @@
 @endsection
 
 @section('content')
-@if($data->count() == 0)
-<a href="/admin/profile/create" class="btn btn-primary mb-2 rounded">Create profile</a>
-@endif
+<a href="/admin/position/create" class="btn btn-primary mb-2 rounded">+ Tambah Posisi</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -34,22 +33,23 @@
             <thead>
                 <tr>
                     <th width="200px">No</th>
-                    <th>Nama desa</th>
-                    <th>Alamat</th>
+                    <th>Nama Posisi</th>
+                    <th>Untuk</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
             <tbody>
-                @if($data)
+                @if($data->count() > 0)
+                @foreach($data as $row)
                 <tr>
-                    <td>1</td>
-                    <td>{{ $data->name }}</td>
-                    <td>{{ $data->address }}</td>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $row->name }}</td>
+                    <td>{{ $row->for     }}</td>
                     <td>
-                        <form action="/admin/profile/{{ $data->id }}" method="post">
+                        <form action="/admin/position/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/admin/profile/{{ $data->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/admin/position/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -57,6 +57,7 @@
                         </form>
                     </td>
                 </tr>
+                @endforeach
                 @else
                 <tr>
                     <td colspan="4" class="text-center">Profile nothing</td>

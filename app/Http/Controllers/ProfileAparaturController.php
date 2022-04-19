@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProfileAparatur;
+use App\Models\ProfileDesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -19,23 +20,24 @@ class ProfileAparaturController extends Controller
         $data = ProfileAparatur::all();
 
         // profile
-        $cek_nama = ProfileAparatur::count();
+        $cek_nama = ProfileDesa::count();
         if ($cek_nama > 0) {
-            $name = ProfileAparatur::first();
+            $name = ProfileDesa::first();
             $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $cek_logo = ProfileAparatur::count();
+        $cek_logo = ProfileDesa::count();
         if ($cek_logo > 0) {
-            $logo = ProfileAparatur::first();
+            $logo = ProfileDesa::first();
             $logo = $logo->picture;
         } else {
             $logo = '';
         }
 
-        return view('admin.profile-aparatur.index', compact('title', 'data', 'name', 'logo'));
+        return view('admin.profile-aparatur.index', compact('title', 'data', 'name', 'logo'))
+            ->with('i', (Request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -45,12 +47,24 @@ class ProfileAparaturController extends Controller
      */
     public function create()
     {
-        $title = 'Create Profile Aparatur';
+        $title = 'Tambah Profile Aparatur';
 
         $data = ProfileAparatur::all();
-        if ($data->count() == 0) {
-            $logo = '';
+        // profile
+        $cek_nama = ProfileDesa::count();
+        if ($cek_nama > 0) {
+            $name = ProfileDesa::first();
+            $name = $name->name;
+        } else {
             $name = 'Spd Perjuangan';
+        }
+
+        $cek_logo = ProfileDesa::count();
+        if ($cek_logo > 0) {
+            $logo = ProfileDesa::first();
+            $logo = $logo->picture;
+        } else {
+            $logo = '';
         }
 
         return view('admin.profile-aparatur.create', compact('title', 'name', 'logo'));
@@ -75,7 +89,7 @@ class ProfileAparaturController extends Controller
         ]);
 
         $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/logo', $picture_name);
+        $path = $request->file('picture')->storeAs('public/gambar_aparatur', $picture_name);
 
         $validate['picture'] = $picture_name;
         ProfileAparatur::create($validate);
@@ -101,22 +115,24 @@ class ProfileAparaturController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Profile Aparatur';
+        $title = 'Edit Profile Aparatur';
         $data = ProfileAparatur::findOrFail($id);
 
         // profile
-        $name = ProfileAparatur::get('name');
-        if (is_null($name)) {
-            $name = 'Spd Perjuangan';
+        $cek_nama = ProfileDesa::count();
+        if ($cek_nama > 0) {
+            $name = ProfileDesa::first();
+            $name = $name->name;
         } else {
-            $name = $name[0]['name'];
+            $name = 'Spd Perjuangan';
         }
 
-        $logo = ProfileAparatur::get('picture');
-        if (is_null($logo)) {
-            $logo = '';
+        $cek_logo = ProfileDesa::count();
+        if ($cek_logo > 0) {
+            $logo = ProfileDesa::first();
+            $logo = $logo->picture;
         } else {
-            $logo = `<link rel="icon" href="{{ url('storage/logo/$logo[0]['picture']') }}">`;
+            $logo = '';
         }
 
         return view('admin.profile-aparatur.edit', compact('title', 'name', 'logo', 'data'));
@@ -142,7 +158,7 @@ class ProfileAparaturController extends Controller
         ]);
 
         $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/logo', $picture_name);
+        $path = $request->file('picture')->storeAs('public/gambar_aparatur', $picture_name);
 
         $validate['picture'] = $picture_name;
         ProfileAparatur::where('id', $id)->update($validate);
@@ -158,7 +174,7 @@ class ProfileAparaturController extends Controller
     public function destroy($id)
     {
         $logo = ProfileAparatur::where('id', $id)->first();
-        File::delete('storage/logo/' . $logo->picture);
+        File::delete('storage/gambar_aparatur/' . $logo->picture);
         $logo = $logo->delete();
         return redirect('/admin/profile-aparatur')->with('delete', 'Profile Aparatur deleted successfully');
     }

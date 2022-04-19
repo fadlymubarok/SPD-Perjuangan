@@ -65,9 +65,15 @@
                         <a href="/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
-                    <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile desa</a></li>
-                    <li class="{{ Request()->is('admin/profile-aparatur*') ? 'active' : '' }}"><a href="/admin/profile-aparatur"> <i class="menu-icon ti-home"></i>Profile aparatur</a></li>
-                    <li class="{{ Request()->is('admin/profile-bpd*') ? 'active' : '' }}"><a href="/admin/profile-bpd"> <i class="menu-icon ti-home"></i>Profile Bpd </a></li>
+                    <li class="menu-item-has-children dropdown {{ Request()->is('admin/profile-desa*') || Request()->is('admin/profile-aparatur*') || Request()->is('admin/profile-aparatur*') ? 'active' : '' }}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti-home"></i>Profil</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li class="{{ Request()->is('admin/position*') ? 'active' : '' }}"><i class="fa fa-table"></i><a href="/admin/position">Posisi</a></li>
+                            <li class="{{ Request()->is('admin/profile-desa*') ? 'active' : '' }}"><i class="menu-icon ti-home"></i><a href="/admin/profile-desa">Desa</a></li>
+                            <li class="{{ Request()->is('admin/profile-aparatur*') ? 'active' : '' }}"><i class="menu-icon ti-home"></i><a href="/admin/profile-aparatur">Aparatur</a></li>
+                            <li class="{{ Request()->is('admin/profile-bpd*') ? 'active' : '' }}"><i class="menu-icon ti-home"></i><a href="/admin/profile-bpd">BPD</a></li>
+                        </ul>
+                    </li>
                     <li class="{{ Request()->is('admin/news*') ? 'active' : '' }}"><a href="/admin/news"> <i class="menu-icon ti-folder"></i>Berita desa</a></li>
                     <li class="{{ Request()->is('admin/achievement*') ? 'active' : '' }}"><a href="/admin/achievement"> <i class="menu-icon ti-cup"></i>Prestasi</a></li>
                     <li class="{{ Request()->is('admin/question*') ? 'active' : '' }}"><a href="/admin/question"> <i class="menu-icon ti-help"></i>Pertanyaan masyarakat</a></li>

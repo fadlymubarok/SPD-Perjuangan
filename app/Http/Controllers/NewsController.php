@@ -18,7 +18,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $title = 'Berita desa';
+        $title = 'Berita Desa';
         $page = 10;
         $search = News::latest();
         if (Request('search')) {
@@ -54,7 +54,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $title = 'tambah berita';
+        $title = 'Tambah berita';
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -139,7 +139,8 @@ class NewsController extends Controller
             $logo = '';
         }
 
-        return view('admin.news.edit', compact('title', 'name', 'logo', 'news'));
+        return view('admin.news.edit', compact('title', 'name', 'logo', 'news'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

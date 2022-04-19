@@ -8,9 +8,8 @@
 @endsection
 
 @section('content')
-@if($data->count() == 0)
-<a href="/admin/profile-aparatur/create" class="btn btn-primary mb-2 rounded">Create Profile Aparatur</a>
-@endif
+<a href="/admin/profile-aparatur/create" class="btn btn-primary mb-2 rounded">+ Tambah Profil Aparatur</a>
+
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -36,10 +35,7 @@
                     <th width="200px">No</th>
                     <th>Name</th>
                     <th>Posisi</th>
-                    <th>Kedudukan</th>
                     <th>Tugas</th>
-                    <th>Fungsi</th>
-                    <th>Keterangan</th>
                     <th>Gambar</th>
                     <th width="200px">Option</th>
                 </tr>
@@ -48,15 +44,12 @@
                 @if($data->count())
                 @foreach($data as $row)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ ++$i }}</td>
                     <td>{{ $row->name }}</td>
                     <td>{{ $row->position }}</td>
-                    <td>{{ $row->kedudukan }}</td>
                     <td>{{ $row->tugas }}</td>
-                    <td>{{ $row->fungsi }}</td>
-                    <td>{{ $row->keterangan }}</td>
                     <td>
-                        <img src="{{ asset('storage/logo/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
+                        <img src="{{ asset('storage/gambar_aparatur/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
                     </td>
                     <td>
                         <form action="/admin/profile-aparatur/{{ $row->id }}" method="post">

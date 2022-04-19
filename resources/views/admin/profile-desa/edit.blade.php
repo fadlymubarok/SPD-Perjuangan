@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="card shadow p-3">
-    <form action="/admin/profile/{{ $data->id }}" method="POST" enctype="multipart/form-data">
+    <form action="/admin/profile-desa/{{ $data->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group mb-2">

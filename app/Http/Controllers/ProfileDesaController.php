@@ -15,27 +15,27 @@ class ProfileDesaController extends Controller
      */
     public function index()
     {
-        $title = 'Profile desa';
+        $title = 'Profile Desa';
         $data = ProfileDesa::first();
 
         // profile
-        $cek_nama = ProfileDesa::count();
-        if ($cek_nama > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $name = ProfileDesa::first();
             $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $cek_logo = ProfileDesa::count();
-        if ($cek_logo > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $logo = ProfileDesa::first();
             $logo = $logo->picture;
         } else {
             $logo = '';
         }
 
-        return view('admin.profile.index', compact('title', 'data', 'name', 'logo'));
+        return view('admin.profile-desa.index', compact('title', 'data', 'name', 'logo', 'cek'));
     }
 
     /**
@@ -45,28 +45,28 @@ class ProfileDesaController extends Controller
      */
     public function create()
     {
-        $title = 'buat profile';
+        $title = 'Tambah profile desa';
 
         $data = ProfileDesa::all();
 
         // profile
-        $cek_nama = ProfileDesa::count();
-        if ($cek_nama > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $name = ProfileDesa::first();
             $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $cek_logo = ProfileDesa::count();
-        if ($cek_logo > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $logo = ProfileDesa::first();
             $logo = $logo->picture;
         } else {
             $logo = '';
         }
 
-        return view('admin.profile.create', compact('title', 'name', 'logo'));
+        return view('admin.profile-desa.create', compact('title', 'name', 'logo'));
     }
 
     /**
@@ -88,7 +88,7 @@ class ProfileDesaController extends Controller
 
         $validate['picture'] = $picture_name;
         ProfileDesa::create($validate);
-        return redirect('/admin/profile')->with('success', 'Profile berhasil ditambah');
+        return redirect('/admin/profile-desa')->with('success', 'Profile berhasil ditambah');
     }
 
     /**
@@ -114,23 +114,23 @@ class ProfileDesaController extends Controller
         $data = ProfileDesa::findOrFail($profile_id);
 
         // profile
-        $cek_nama = ProfileDesa::count();
-        if ($cek_nama > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $name = ProfileDesa::first();
             $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $cek_logo = ProfileDesa::count();
-        if ($cek_logo > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $logo = ProfileDesa::first();
             $logo = $logo->picture;
         } else {
             $logo = '';
         }
 
-        return view('admin.profile.edit', compact('title', 'name', 'logo', 'data'));
+        return view('admin.profile-desa.edit', compact('title', 'name', 'logo', 'data'));
     }
 
     /**
@@ -166,7 +166,7 @@ class ProfileDesaController extends Controller
             $validate['picture'] = $picture_name;
         }
         ProfileDesa::where('id', $profile_id)->update($validate);
-        return redirect('/admin/profile')->with('update', 'Profile berhasil diupdate');
+        return redirect('/admin/profile-desa')->with('update', 'Profile berhasil diupdate');
     }
 
     /**
@@ -180,6 +180,6 @@ class ProfileDesaController extends Controller
         $logo = ProfileDesa::where('id', $profile_id)->first();
         File::delete('storage/logo/' . $logo->picture);
         $logo = $logo->delete();
-        return redirect('/admin/profile')->with('delete', 'Profile berhasil dihapus');
+        return redirect('/admin/profile-desa')->with('delete', 'Profile berhasil dihapus');
     }
 }

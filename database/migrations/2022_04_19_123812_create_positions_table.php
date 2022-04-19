@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfileBpdTable extends Migration
+class CreatePositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateProfileBpdTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile_bpd', function (Blueprint $table) {
+        Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 40);
-            $table->string('position', 30);
-            $table->string('picture', 30);
+            $table->string('name');
+            $table->string('for');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateProfileBpdTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_bpd');
+        Schema::dropIfExists('positions');
     }
 }
