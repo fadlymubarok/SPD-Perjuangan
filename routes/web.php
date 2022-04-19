@@ -3,6 +3,8 @@
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileDesaController;
+use App\Http\Controllers\ProfileAparaturController;
+use App\Http\Controllers\ProfileBpdController;
 use App\Http\Controllers\QuestionController;
 use App\Models\ProfileDesa;
 use Illuminate\Support\Facades\Route;
@@ -58,10 +60,19 @@ Route::group(['middleware' => ['auth']], function () {
         // route berita
         Route::resource('/news', NewsController::class)->except('show');
 
+        // Route profile aparatur
+        Route::resource('/profile-aparatur', ProfileAparaturController::class)->except('show');
+
+        // Route profile bpd
+        Route::resource('/profile-bpd', ProfileBpdController::class)->except('show');
+
         // route prestasi
         Route::resource('/achievement', AchievementController::class)->except('show');
 
+        // route pertanyaan
         Route::resource('/question', QuestionController::class)->except('show');
+        
+        
     });
     Route::get('getSlug', [NewsController::class, 'getSlug']);
 });

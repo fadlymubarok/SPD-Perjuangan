@@ -66,6 +66,8 @@
                     </li>
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
                     <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile desa</a></li>
+                    <li class="{{ Request()->is('admin/profile-aparatur*') ? 'active' : '' }}"><a href="/admin/profile-aparatur"> <i class="menu-icon ti-home"></i>Profile aparatur</a></li>
+                    <li class="{{ Request()->is('admin/profile-bpd*') ? 'active' : '' }}"><a href="/admin/profile-bpd"> <i class="menu-icon ti-home"></i>Profile Bpd </a></li>
                     <li class="{{ Request()->is('admin/news*') ? 'active' : '' }}"><a href="/admin/news"> <i class="menu-icon ti-folder"></i>Berita desa</a></li>
                     <li class="{{ Request()->is('admin/achievement*') ? 'active' : '' }}"><a href="/admin/achievement"> <i class="menu-icon ti-cup"></i>Prestasi</a></li>
                     <li class="{{ Request()->is('admin/question*') ? 'active' : '' }}"><a href="/admin/question"> <i class="menu-icon ti-help"></i>Pertanyaan masyarakat</a></li>
