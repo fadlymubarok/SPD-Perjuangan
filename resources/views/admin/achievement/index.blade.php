@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<a href="/admin/news/create" class="btn btn-primary mb-2 rounded">+ Tambah Berita</a>
+<a href="/admin/achievement/create" class="btn btn-primary mb-2 rounded">+ Tambah Prestasi</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -36,7 +36,7 @@
                         <th>No</th>
                         <th width="150px">Judul</th>
                         <th>Penjelasan singkat</th>
-                        <th>Kategori</th>
+                        <th>Tanggal prestasi</th>
                         <th width="150px">Option</th>
                     </tr>
                 </thead>
@@ -47,12 +47,12 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $row->title }}</td>
                         <td>{{ $row->excerpt }}</td>
-                        <td>{{ $row->category }}</td>
+                        <td>{{ $row->achievement_date }}</td>
                         <td>
-                            <form action="/admin/news/{{ $row->id }}" method="post">
+                            <form action="/admin/achievement/{{ $row->id }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="/admin/news/{{ $row->id }}/edit" class="btn btn-warning rounded">
+                                <a href="/admin/achievement/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>

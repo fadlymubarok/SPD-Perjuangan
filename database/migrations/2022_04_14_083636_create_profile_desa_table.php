@@ -15,7 +15,8 @@ class CreateProfileDesaTable extends Migration
     {
         Schema::create('profile_desa', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 40);
+            $table->string('name', 30);
+            $table->string('address', 30);
             $table->string('picture', 30);
             $table->timestamps();
         });

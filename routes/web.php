@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileDesaController;
+use App\Http\Controllers\QuestionController;
 use App\Models\ProfileDesa;
 use Illuminate\Support\Facades\Route;
 
@@ -54,12 +55,15 @@ Route::group(['middleware' => ['auth']], function () {
         // Route profile desa
         Route::resource('/profile', ProfileDesaController::class)->except('show');
 
-        // route kategori
-        Route::resource('/category', CategoryController::class)->except('show');
-
         // route berita
         Route::resource('/news', NewsController::class)->except('show');
+
+        // route prestasi
+        Route::resource('/achievement', AchievementController::class)->except('show');
+
+        Route::resource('/question', QuestionController::class)->except('show');
     });
+    Route::get('getSlug', [NewsController::class, 'getSlug']);
 });
 
 
