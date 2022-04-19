@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ProfileDesaController;
 use App\Models\ProfileDesa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfileBpdController;
+use App\Http\Controllers\ProfileDesaController;
+use App\Http\Controllers\ProfileAparaturController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('admin')->group(function () {
         // Route profile desa
         Route::resource('/profile', ProfileDesaController::class)->except('show');
+        
+        // Route profile aparatur
+        Route::resource('/profile-aparatur', ProfileAparaturController::class)->except('show');
+        
+        // Route profile bpd
+        Route::resource('/profile-bpd', ProfileBpdController::class)->except('show');
 
         // route kategori
         Route::resource('/category', CategoryController::class)->except('show');

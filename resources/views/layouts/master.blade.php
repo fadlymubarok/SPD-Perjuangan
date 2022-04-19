@@ -52,7 +52,15 @@
                         <a href="/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
-                    <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile Desa</a></li>
+                    <li class="menu-item-has-children dropdown show">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-home"></i>Profile</a>
+                        <ul class="sub-menu children dropdown-menu show">
+                            <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><i class="ti-home"></i><a href="/admin/profile">Profile Desa</a></li>
+                            <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><i class="ti-home"></i><a href="/admin/profile-aparatur">Profile Aparatur</a></li>
+                            <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><i class="ti-home"></i><a href="/admin/profile-bpd">Profile BPD</a></li>
+                        </ul>
+                    </li>
+                    {{-- <li class="{{ Request()->is('admin/profile*') ? 'active' : '' }}"><a href="/admin/profile"> <i class="menu-icon ti-home"></i>Profile Desa</a></li> --}}
                     <li class="{{ Request()->is('admin/news*') ? 'active' : '' }}"><a href="/admin/news"> <i class="menu-icon ti-folder"></i>Berita desa</a></li>
                     <li class="{{ Request()->is('admin/category*') ? 'active' : '' }}"><a href="/admin/category"> <i class="menu-icon ti-list"></i>Kategori</a></li>
                 </ul>
