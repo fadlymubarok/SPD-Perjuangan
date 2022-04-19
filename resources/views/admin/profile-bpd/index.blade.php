@@ -8,9 +8,7 @@
 @endsection
 
 @section('content')
-@if($data->count() == 0)
-<a href="/admin/profile/create" class="btn btn-primary mb-2 rounded">Create profile</a>
-@endif
+<a href="/admin/profile-bpd/create" class="btn btn-primary mb-2 rounded">+ Tambah Profil BPD</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))
@@ -34,22 +32,27 @@
             <thead>
                 <tr>
                     <th width="200px">No</th>
-                    <th>Nama desa</th>
-                    <th>Alamat</th>
+                    <th>Name</th>
+                    <th>Posisi</th>
+                    <th>Gambar</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
             <tbody>
-                @if($data)
+                @if($data->count())
+                @foreach($data as $row)
                 <tr>
-                    <td>1</td>
-                    <td>{{ $data->name }}</td>
-                    <td>{{ $data->address }}</td>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $row->name }}</td>
+                    <td>{{ $row->position }}</td>
                     <td>
-                        <form action="/admin/profile/{{ $data->id }}" method="post">
+                        <img src="{{ asset('storage/gambar_bpd/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
+                    </td>
+                    <td>
+                        <form action="/admin/profile-bpd/{{ $row->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="/admin/profile/{{ $data->id }}/edit" class="btn btn-warning rounded">
+                            <a href="/admin/profile-bpd/{{ $row->id }}/edit" class="btn btn-warning rounded">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
@@ -57,9 +60,10 @@
                         </form>
                     </td>
                 </tr>
+                @endforeach
                 @else
                 <tr>
-                    <td colspan="4" class="text-center">Profile nothing</td>
+                    <td colspan="5" class="text-center">Profile BPD nothing</td>
                 </tr>
                 @endif
             </tbody>

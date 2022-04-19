@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\Models\Position;
 use App\Models\ProfileDesa;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $title = 'Pertanyaan masyarakat';
-        $page = 10;
-        $search = Question::latest();
-        if (Request('search')) {
-            $search->where('name', 'like', '%' . Request('search') . '%');
-        }
-        $data = $search->paginate($page);
+        $title = 'Posisi';
+        $data = Position::all();
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -40,8 +35,8 @@ class QuestionController extends Controller
             $logo = '';
         }
 
-        return view('admin.question.index', compact('title', 'data', 'name', 'logo'))
-            ->with('i', (Request()->input('page', 1) - 1) * $page);
+        return view('admin.position.index', compact('title', 'data', 'name', 'logo'))
+            ->with('i', (Request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -51,26 +46,28 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $title = 'bertanya';
+        $title = 'Tambah posisi';
+
+        $data = ProfileDesa::all();
 
         // profile
-        $cek_nama = ProfileDesa::count();
-        if ($cek_nama > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $name = ProfileDesa::first();
             $name = $name->name;
         } else {
             $name = 'Spd Perjuangan';
         }
 
-        $cek_logo = ProfileDesa::count();
-        if ($cek_logo > 0) {
+        $cek = ProfileDesa::count();
+        if ($cek > 0) {
             $logo = ProfileDesa::first();
             $logo = $logo->picture;
         } else {
             $logo = '';
         }
 
-        return view('admin.question.create', compact('title', 'name', 'logo'));
+        return view('admin.position.create', compact('title', 'name', 'logo'));
     }
 
     /**
@@ -82,22 +79,21 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|max:255',
-            'body' => 'required'
+            'name' => 'required|unique:positions',
+            'for' => 'required|min:1'
         ]);
-        $validate['address'] = $request->kp . ' RT. ' . $request->rt . ' RW. ' . $request->rw;
-        $validate['status'] = 0;
-        Question::create($validate);
-        return redirect('/admin/question')->with('success', 'Pertanyaan berhasil ditambah');
+
+        Position::create($validate);
+        return redirect('/admin/position')->with('success', 'Posisi berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Position $position)
     {
         //
     }
@@ -105,12 +101,12 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Position $position)
     {
-        $title = 'detail pertanyaan';
+        $title = 'edit posisi';
         // profile
         $cek_nama = ProfileDesa::count();
         if ($cek_nama > 0) {
@@ -128,35 +124,41 @@ class QuestionController extends Controller
             $logo = '';
         }
 
-        return view('admin.question.edit', compact('title', 'name', 'logo', 'question'));
+        return view('admin.position.edit', compact('title', 'name', 'logo', 'position'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, Position $position)
     {
-        $validate = $request->validate([
-            'opinion' => 'required'
-        ]);
-        $validate['status'] = 1;
-        $question->update($validate);
+        $rule = [
+            'for' => 'required|min:1'
+        ];
 
-        return redirect('/admin/question')->with('update', 'Pertanyaan berhasil diupdate');
+        if ($request->name != $position->name) {
+            $rule['name'] = 'required|unique:positions';
+        }
+
+        $validate = $request->validate($rule);
+
+        $position->update($validate);
+        return redirect('/admin/position')->with('update', 'Posisi berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Position $position)
     {
-        //
+        $position->delete();
+        return redirect('/admin/position')->with('delete', 'Posisi berhasil dihapus');
     }
 }

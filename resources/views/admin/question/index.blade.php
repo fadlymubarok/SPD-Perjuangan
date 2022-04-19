@@ -50,11 +50,14 @@
                             <form action="/admin/question/{{ $row->id }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="/admin/question/{{ $row->id }}/edit" class="btn btn-warning rounded">
-                                    <i class="fa fa-pencil"></i>
+
+                                @if($row->status == 0)
+                                <a href="/admin/question/{{ $row->id }}/edit" class="btn btn-info rounded">
+                                    <i class="fa fa-eye"></i>
                                 </a>
-                                <button type="submit" class="btn btn-danger bg-outline-transparent rounded" onclick="return confirm('Are you sure?'); "> <i class="fa fa-trash"></i>
-                                </button>
+                                @else
+                                <span class="badge badge-info p-2 mt-2">Telah ditanggapi</span>
+                                @endif
                             </form>
                         </td>
                     </tr>

@@ -17,7 +17,7 @@ class AchievementController extends Controller
      */
     public function index()
     {
-        $title = 'Prestasi desa';
+        $title = 'Prestasi Desa';
         $page = 10;
         $search = Achievement::latest();
         if (Request('search')) {
@@ -120,7 +120,7 @@ class AchievementController extends Controller
      */
     public function edit(Achievement $achievement)
     {
-        $title = 'edit prestasi';
+        $title = 'Edit prestasi';
         // profile
         $cek_nama = ProfileDesa::count();
         if ($cek_nama > 0) {
