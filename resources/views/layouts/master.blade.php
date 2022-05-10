@@ -65,7 +65,7 @@
                         <a href="/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <h3 class="menu-title mt-n2 pt-0">Admin Page</h3>
-                    <li class="menu-item-has-children dropdown {{ Request()->is('admin/profile-desa*') || Request()->is('admin/profile-aparatur*') || Request()->is('admin/profile-aparatur*') ? 'active' : '' }}">
+                    <li class="menu-item-has-children dropdown {{ Request()->is('admin/profile-desa*') || Request()->is('admin/profile-aparatur*') || Request()->is('admin/profile-bpd*') || Request()->is('admin/position*') ? 'active' : '' }}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti-home"></i>Profil</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li class="{{ Request()->is('admin/position*') ? 'active' : '' }}"><i class="fa fa-table"></i><a href="/admin/position">Posisi</a></li>

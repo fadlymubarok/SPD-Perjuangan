@@ -21,7 +21,7 @@ class AchievementController extends Controller
         $page = 10;
         $search = Achievement::latest();
         if (Request('search')) {
-            $search->where('name', 'like', '%' . Request('search') . '%');
+            $search->where('title', 'like', '%' . Request('search') . '%');
         }
         $data = $search->paginate($page);
 

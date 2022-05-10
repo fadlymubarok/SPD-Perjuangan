@@ -29,6 +29,10 @@
             {{ session('delete') }}
         </div>
         @endif
+        <form class="search-form d-flex w-25 ml-auto mb-1" action="/admin/position">
+            <label for="search" class="mt-sm-2">Cari: </label>
+            <input class="form-control ml-2" type="text" name="search" placeholder="Cari ...">
+        </form>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -44,7 +48,7 @@
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $row->name }}</td>
-                    <td>{{ $row->for     }}</td>
+                    <td>{{ $row->for }}</td>
                     <td>
                         <form action="/admin/position/{{ $row->id }}" method="post">
                             @csrf

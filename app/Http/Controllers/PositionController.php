@@ -16,7 +16,13 @@ class PositionController extends Controller
     public function index()
     {
         $title = 'Posisi';
-        $data = Position::all();
+        $page = 10;
+        $search = Position::latest();
+        if (Request('search')) {
+            $search->where('name', 'like', '%' . Request('search') . '%')
+                ->orWhere('for', 'like', '%' . Request('search') . '%');
+        }
+        $data = $search->paginate($page);
 
         // profile
         $cek_nama = ProfileDesa::count();
