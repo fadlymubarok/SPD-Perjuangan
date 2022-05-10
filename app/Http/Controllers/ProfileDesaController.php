@@ -15,7 +15,7 @@ class ProfileDesaController extends Controller
      */
     public function index()
     {
-        $title = 'Profile Desa';
+        $title = 'Profil Desa';
         $data = ProfileDesa::first();
 
         // profile
@@ -45,7 +45,7 @@ class ProfileDesaController extends Controller
      */
     public function create()
     {
-        $title = 'Tambah profile desa';
+        $title = 'Tambah Profil Desa';
 
         $data = ProfileDesa::all();
 
@@ -110,7 +110,7 @@ class ProfileDesaController extends Controller
      */
     public function edit($profile_id)
     {
-        $title = 'Edit profile';
+        $title = 'Edit Profil';
         $data = ProfileDesa::findOrFail($profile_id);
 
         // profile

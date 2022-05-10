@@ -22,7 +22,8 @@ class NewsController extends Controller
         $page = 10;
         $search = News::latest();
         if (Request('search')) {
-            $search->where('name', 'like', '%' . Request('search') . '%');
+            $search->where('title', 'like', '%' . Request('search') . '%')
+                ->orWhere('category', 'like', '%' . Request('search') . '%');
         }
         $data = $search->paginate($page);
 

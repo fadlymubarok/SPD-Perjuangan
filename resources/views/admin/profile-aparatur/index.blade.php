@@ -29,6 +29,10 @@
             {{ session('delete') }}
         </div>
         @endif
+        <form class="search-form d-flex w-25 ml-auto mb-1">
+            <label for="search" class="mt-sm-2">Cari: </label>
+            <input class="form-control ml-2" type="text" placeholder="Cari ...">
+        </form>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -36,7 +40,6 @@
                     <th>Name</th>
                     <th>Posisi</th>
                     <th>Tugas</th>
-                    <th>Gambar</th>
                     <th width="200px">Option</th>
                 </tr>
             </thead>
@@ -48,9 +51,6 @@
                     <td>{{ $row->name }}</td>
                     <td>{{ $row->position }}</td>
                     <td>{{ $row->tugas }}</td>
-                    <td>
-                        <img src="{{ asset('storage/gambar_aparatur/' . $row->picture) }}" alt="$row->picture" width="100px" height="100px">
-                    </td>
                     <td>
                         <form action="/admin/profile-aparatur/{{ $row->id }}" method="post">
                             @csrf

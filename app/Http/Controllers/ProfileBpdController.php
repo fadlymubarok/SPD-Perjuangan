@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Models\ProfileBpd;
 use App\Models\ProfileDesa;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ProfileBpdController extends Controller
      */
     public function index()
     {
-        $title = 'Profile BPD';
+        $title = 'Profil BPD';
         $data = ProfileBpd::all();
 
         // profile
@@ -47,15 +48,27 @@ class ProfileBpdController extends Controller
      */
     public function create()
     {
-        $title = 'Tambah profile bpd';
+        $title = 'Tambah Profil BPD';
 
-        $data = ProfileBpd::all();
-        if ($data->count() == 0) {
-            $logo = '';
+        $positions = Position::where('for', 'bpd')->get();
+        // profile
+        $cek_nama = ProfileDesa::count();
+        if ($cek_nama > 0) {
+            $name = ProfileDesa::first();
+            $name = $name->name;
+        } else {
             $name = 'Spd Perjuangan';
         }
 
-        return view('admin.profile-bpd.create', compact('title', 'name', 'logo'));
+        $cek_logo = ProfileDesa::count();
+        if ($cek_logo > 0) {
+            $logo = ProfileDesa::first();
+            $logo = $logo->picture;
+        } else {
+            $logo = '';
+        }
+
+        return view('admin.profile-bpd.create', compact('title', 'name', 'logo', 'positions'));
     }
 
     /**
@@ -99,7 +112,7 @@ class ProfileBpdController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Edit Profile BPD';
+        $title = 'Edit Profil BPD';
         $data = ProfileBpd::findOrFail($id);
 
         // profile

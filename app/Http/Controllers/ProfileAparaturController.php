@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Models\ProfileAparatur;
 use App\Models\ProfileDesa;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ProfileAparaturController extends Controller
      */
     public function index()
     {
-        $title = 'Profile Aparatur';
+        $title = 'Profil Aparatur';
         $data = ProfileAparatur::all();
 
         // profile
@@ -47,9 +48,9 @@ class ProfileAparaturController extends Controller
      */
     public function create()
     {
-        $title = 'Tambah Profile Aparatur';
+        $title = 'Tambah Profil Aparatur';
 
-        $data = ProfileAparatur::all();
+        $positions = Position::where('for', 'aparatur')->get();
         // profile
         $cek_nama = ProfileDesa::count();
         if ($cek_nama > 0) {
@@ -67,7 +68,7 @@ class ProfileAparaturController extends Controller
             $logo = '';
         }
 
-        return view('admin.profile-aparatur.create', compact('title', 'name', 'logo'));
+        return view('admin.profile-aparatur.create', compact('title', 'name', 'logo', 'positions'));
     }
 
     /**
@@ -115,7 +116,7 @@ class ProfileAparaturController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Edit Profile Aparatur';
+        $title = 'Edit Profil Aparatur';
         $data = ProfileAparatur::findOrFail($id);
 
         // profile

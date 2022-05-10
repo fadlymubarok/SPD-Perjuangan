@@ -6,7 +6,7 @@
     <div class="col-sm-4 ml-0 pl-0">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Form Create Profile Aparatur</h1>
+                <h1>Form Create Profil Aparatur</h1>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
     <form action="/admin/profile-bpd" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group w-50">
-            <label for="name" class="control-label mb-1">Name</label>
+            <label for="name" class="control-label mb-1">Nama BPD</label>
             <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="nama bpd" autofocus>
             @error('name')
             <div class="invalid-feedback">
@@ -25,7 +25,12 @@
         </div>
         <div class="form-group w-50">
             <label for="position" class="control-label mb-1">Posisi</label>
-            <input name="position" type="text" class="form-control @error('position') is-invalid @enderror" placeholder="posisi" autofocus>
+            <select name="position" class="form-control @error('position') is-invalid @enderror">
+                <option value="">Pilih kategori</option>
+                @foreach($positions as $p)
+                <option value="{{ $p->id }}" {{ old('position') == $p->id ? 'selected' : ''}}>{{ $p->name }}</option>
+                @endforeach
+            </select>
             @error('position')
             <div class="invalid-feedback">
                 {{ $message }}
