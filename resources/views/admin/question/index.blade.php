@@ -1,11 +1,11 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 @section('header')
-@include('layouts.partials.topbar')
+@include('admin.layouts.partials.topbar')
 @endsection
 
 @section('breadcrumbs')
-@include('layouts.partials.breadcumbs')
+@include('admin.layouts.partials.breadcumbs')
 @endsection
 
 @section('content')

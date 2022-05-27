@@ -153,13 +153,13 @@ class ProfileDesaController extends Controller
             $rule['name'] = 'required|unique:profile_desa|min:5|max:255';
         }
 
-        if ($request->name != $profile->picture) {
-            $rule['picture'] = 'required|file|image|max:2048';
+        if ($request->picture != $profile->picture && $request->file('picture') != '') {
+            $rule['picture'] = 'file|image|max:2048';
         }
 
         $validate = $request->validate($rule);
 
-        if ($request->name != $profile->picture) {
+        if ($request->picture != $profile->picture && $request->file('picture') != '') {
             $picture_name = $request->file('picture')->getClientOriginalName();
             $path = $request->file('picture')->storeAs('public/logo', $picture_name);
 

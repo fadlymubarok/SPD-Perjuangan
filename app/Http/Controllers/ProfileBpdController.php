@@ -81,7 +81,7 @@ class ProfileBpdController extends Controller
     {
         $validate = $request->validate([
             'name'          => 'required|unique:profile_desa|min:5|max:255',
-            'position'      => 'required|min:5|max:255',
+            'position'      => 'required|min:1|max:255',
             'picture'       => 'required|file|image|max:2048'
         ]);
 
@@ -114,6 +114,8 @@ class ProfileBpdController extends Controller
     {
         $title = 'Edit Profil BPD';
         $data = ProfileBpd::findOrFail($id);
+        $positions = Position::where('for', 'bpd')->get();
+
 
         // profile
         $name = ProfileBpd::get('name');
@@ -130,7 +132,7 @@ class ProfileBpdController extends Controller
             $logo = `<link rel="icon" href="{{ url('storage/logo/$logo[0]['picture']') }}">`;
         }
 
-        return view('admin.profile-bpd.edit', compact('title', 'name', 'logo', 'data'));
+        return view('admin.profile-bpd.edit', compact('title', 'name', 'logo', 'data', 'positions'));
     }
 
     /**
@@ -142,16 +144,25 @@ class ProfileBpdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
-            'name'          => 'required|min:5|max:255',
-            'position'      => 'required|min:5|max:255',
-            'picture'       => 'required|file|image|max:2048'
-        ]);
+        $rules = [
+            'name'          => 'required|max:255',
+            'position'      => 'required|min:1|max:255'
+        ];
 
-        $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/gambar_bpd', $picture_name);
+        $profile = ProfileBpd::find($id);
+        if ($request->picture != $profile->picture && $request->file('picture') != '') {
+            $rules['picture'] = 'required|file|image|max:2048';
+        }
 
-        $validate['picture'] = $picture_name;
+        $validate = $request->validate($rules);
+
+        if ($request->picture != $profile->picture && $request->file('picture') != '') {
+            $picture_name = $request->file('picture')->getClientOriginalName();
+            $path = $request->file('picture')->storeAs('public/gambar_bpd', $picture_name);
+
+            $validate['picture'] = $picture_name;
+        }
+
         ProfileBpd::where('id', $id)->update($validate);
         return redirect('/admin/profile-bpd')->with('update', 'Profile BPD updated successfully');
     }
