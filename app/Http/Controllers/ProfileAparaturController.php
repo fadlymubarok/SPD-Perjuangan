@@ -80,12 +80,12 @@ class ProfileAparaturController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'          => 'required|unique:profile_desa|min:5|max:255',
-            'position'      => 'required|min:5|max:255',
-            'kedudukan'     => 'required|min:5|max:255',
-            'tugas'         => 'required|min:5|max:255',
-            'fungsi'        => 'required|min:5|max:255',
-            'keterangan'    => 'required|min:5|max:255',
+            'name'          => 'required|unique:profile_desa|max:255',
+            'position'      => 'required|max:255',
+            'kedudukan'     => 'required|max:255',
+            'tugas'         => 'required|max:255',
+            'fungsi'        => 'required',
+            'keterangan'    => 'required|max:255',
             'picture'       => 'required|file|image|max:2048'
         ]);
 
@@ -118,6 +118,7 @@ class ProfileAparaturController extends Controller
     {
         $title = 'Edit Profil Aparatur';
         $data = ProfileAparatur::findOrFail($id);
+        $positions = Position::where('for', 'aparatur')->get();
 
         // profile
         $cek_nama = ProfileDesa::count();
@@ -136,7 +137,7 @@ class ProfileAparaturController extends Controller
             $logo = '';
         }
 
-        return view('admin.profile-aparatur.edit', compact('title', 'name', 'logo', 'data'));
+        return view('admin.profile-aparatur.edit', compact('title', 'name', 'logo', 'data', 'positions'));
     }
 
     /**
@@ -148,20 +149,28 @@ class ProfileAparaturController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
-            'name'          => 'required|min:5|max:255',
-            'position'      => 'required|min:5|max:255',
-            'kedudukan'     => 'required|min:5|max:255',
-            'tugas'         => 'required|min:5|max:255',
-            'fungsi'        => 'required|min:5|max:255',
-            'keterangan'    => 'required|min:5|max:255',
-            'picture'       => 'required|file|image|max:2048'
-        ]);
+        $rules = [
+            'name'          => 'required|max:255',
+            'position'      => 'required|max:255',
+            'kedudukan'     => 'required|max:255',
+            'tugas'         => 'required|max:255',
+            'fungsi'        => 'required',
+            'keterangan'    => 'required|max:255',
+        ];
 
-        $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/gambar_aparatur', $picture_name);
+        $profile = ProfileAparatur::find($id);
+        if ($request->picture != $profile->picture && $request->file('picture') != '') {
+            $rules['picture'] = 'required|file|image|max:2048';
+        }
+        $validate = $request->validate($rules);
 
-        $validate['picture'] = $picture_name;
+        if ($request->file('picture') != $profile->picture && $request->file('picture') != '') {
+            $picture_name = $request->file('picture')->getClientOriginalName();
+            $path = $request->file('picture')->storeAs('public/gambar_aparatur', $picture_name);
+
+            $validate['picture'] = $picture_name;
+        }
+
         ProfileAparatur::where('id', $id)->update($validate);
         return redirect('/admin/profile-aparatur')->with('update', 'Profile Aparatur updated successfully');
     }

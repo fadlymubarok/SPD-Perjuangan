@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 
 @section('content')
@@ -39,7 +39,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <a href="/admin/profile" class="btn btn-danger rounded">Back</a>
+            <a href="/admin/position" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-primary rounded">Submit</button>
         </div>
     </form>

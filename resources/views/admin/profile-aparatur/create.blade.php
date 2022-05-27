@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 
 @section('content')
@@ -24,12 +24,12 @@
                 </div>
                 @enderror
             </div>
-            <div class="form-group w-50">
+            <div class="form-group w-50 mr-2">
                 <label for="position" class="control-label mb-1">Posisi</label>
                 <select name="position" class="form-control @error('position') is-invalid @enderror">
                     <option value="">Pilih kategori</option>
                     @foreach($positions as $p)
-                    <option value="{{ $p->id }}" {{ old('position') == $p->id ? 'selected' : ''}}>{{ $p->name }}</option>
+                    <option value="{{ $p->name }}" {{ old('position') == $p->id ? 'selected' : ''}}>{{ $p->name }}</option>
                     @endforeach
                 </select>
                 @error('position')
@@ -38,9 +38,7 @@
                 </div>
                 @enderror
             </div>
-        </div>
-        <div class="d-flex">
-            <div class="form-group w-50 mr-2">
+            <div class="form-group w-50">
                 <label for="kedudukan" class="control-label mb-1">Kedudukan</label>
                 <input name="kedudukan" type="text" class="form-control @error('kedudukan') is-invalid @enderror" value="{{ old('kedudukan') }}">
                 @error('kedudukan')
@@ -49,10 +47,21 @@
                 </div>
                 @enderror
             </div>
-            <div class="form-group w-50">
+        </div>
+        <div class="d-flex">
+            <div class="form-group w-50 mr-2">
                 <label for="tugas" class="control-label mb-1">Tugas</label>
-                <input name="tugas" type="text" class="form-control @error('tugas') is-invalid @enderror" value="{{ old('tugas') }}">
+                <textarea name="tugas" class="form-control @error('tugas') is-invalid @enderror" value="{{ old('tugas') }}" cols="30" rows="5"></textarea>
                 @error('tugas')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            <div class="form-group w-50">
+                <label for="fungsi" class="control-label mb-1">Fungsi</label>
+                <textarea name="fungsi" class="form-control @error('fungsi') is-invalid @enderror" value="{{ old('fungsi') }}" cols="30" rows="5"></textarea>
+                @error('fungsi')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -60,15 +69,6 @@
             </div>
         </div>
         <div class="d-flex">
-            <div class="form-group w-50 mr-2">
-                <label for="fungsi" class="control-label mb-1">Fungsi</label>
-                <input name="fungsi" type="text" class="form-control @error('fungsi') is-invalid @enderror" value="{{ old('fungsi') }}">
-                @error('fungsi')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
             <div class="form-group w-50 mr-2">
                 <label for="keterangan" class="control-label mb-1">Keterangan</label>
                 <input name="keterangan" type="text" class="form-control @error('keterangan') is-invalid @enderror" value="{{ old('keterangan') }}">
