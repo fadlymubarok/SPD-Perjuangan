@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\ProfileDesa;
+use App\Models\Achievement;
+use App\Models\News;
+use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PositionController;
@@ -9,9 +12,8 @@ use App\Http\Controllers\ProfileBpdController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ProfileDesaController;
 use App\Http\Controllers\ProfileAparaturController;
-use App\Models\Achievement;
-use App\Models\News;
-use App\Models\Question;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +26,14 @@ use App\Models\Question;
 |
 */
 
-Route::get('/', function () {
-    return view('user.home', [
-        'profile' => ProfileDesa::first()
-    ]);
-});
+Route::get('/', [UserController::class, 'home']);
 
+// user route
+
+
+
+
+// end user route
 
 // admin route
 Route::group(['middleware' => ['auth']], function () {
