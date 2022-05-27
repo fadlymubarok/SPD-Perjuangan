@@ -49,7 +49,7 @@
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $row->title }}</td>
-                    <td>{{ $row->excerpt }}</td>
+                    <td>{!! $row->excerpt !!}</td>
                     <td>{{ $row->category }}</td>
                     <td>
                         <form action="/admin/news/{{ $row->id }}" method="post">

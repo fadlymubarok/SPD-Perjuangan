@@ -9,6 +9,9 @@ use App\Http\Controllers\ProfileBpdController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ProfileDesaController;
 use App\Http\Controllers\ProfileAparaturController;
+use App\Models\Achievement;
+use App\Models\News;
+use App\Models\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,7 @@ Route::get('/', function () {
 // admin route
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
+        $title = 'Dashboard';
         $data = ProfileDesa::all();
 
         // profile
@@ -48,11 +52,15 @@ Route::group(['middleware' => ['auth']], function () {
             $logo = '';
         }
 
-        return view('dashboard', [
-            'title' => 'Dashboard',
-            'name' => $name,
-            'logo' => $logo
-        ]);
+        // data dashboard
+        $berita_desa = News::where('category', 'berita')->count();
+        $keuangan_desa = News::where('category', 'keuangan')->count();
+        $event = News::where('category', 'event')->count();
+        $prestasi = Achievement::count();
+        $pertanyaan = Question::count();
+
+
+        return view('dashboard', compact('title', 'name', 'logo', 'berita_desa', 'keuangan_desa', 'event', 'prestasi', 'pertanyaan'));
     })->name('dashboard');
     Route::prefix('admin')->group(function () {
         // Route profile desa

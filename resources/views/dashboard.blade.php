@@ -16,7 +16,7 @@
                 <div class="stat-icon dib"><i class="ti-folder text-info border-info"></i></div>
                 <div class="stat-content dib">
                     <div class="stat-text ml-2">Berita desa</div>
-                    <div class="stat-digit ml-2">2,781</div>
+                    <div class="stat-digit ml-2">{{ $berita_desa }}</div>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="stat-icon dib"><i class="ti-wallet text-success border-success"></i></div>
                 <div class="stat-content dib">
                     <div class="stat-text ml-2">Keuangan desa</div>
-                    <div class="stat-digit ml-2">2,781</div>
+                    <div class="stat-digit ml-2">{{ $keuangan_desa }}</div>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <div class="stat-icon dib"><i class="ti-agenda text-danger border-danger"></i></div>
                 <div class="stat-content dib">
                     <div class="stat-text ml-2">Events</div>
-                    <div class="stat-digit ml-2">2,781</div>
+                    <div class="stat-digit ml-2">{{ $event }}</div>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                     <div class="stat-icon dib"><i class="ti-cup text-warning border-warning"></i></div>
                     <div class="stat-content dib">
                         <div class="stat-text ml-2">Prestasi</div>
-                        <div class="stat-digit ml-2">2,781</div>
+                        <div class="stat-digit ml-2">{{ $prestasi }}</div>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     <div class="stat-icon dib"><i class="ti-help text-info border-info"></i></div>
                     <div class="stat-content dib">
                         <div class="stat-text ml-2">Pertanyaan</div>
-                        <div class="stat-digit ml-2">2,781</div>
+                        <div class="stat-digit ml-2">{{ $pertanyaan }}</div>
                     </div>
                 </div>
             </div>

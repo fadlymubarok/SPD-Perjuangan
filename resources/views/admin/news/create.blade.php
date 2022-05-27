@@ -36,8 +36,9 @@
             <label for="category" class=" form-control-label">Kategori</label>
             <select name="category" class="form-control @error('category') is-invalid @enderror">
                 <option value="">Pilih kategori</option>
-                <option value="Umum" @if(old('category')=='Umum' ) selected @endif>Umum</option>
-                <option value="Event" @if(old('category')=='Event' ) selected @endif>Event</option>
+                <option value="berita" @if(old('category')=='Berita' ) selected @endif>Berita</option>
+                <option value="Keuangan" @if(old('category')=='Keuangan' ) selected @endif>Keuangan desa</option>
+                <option value="event" @if(old('category')=='Event' ) selected @endif>Event</option>
             </select>
             @error('category')
             <div class="invalid-feedback">
