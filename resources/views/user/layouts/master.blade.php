@@ -9,7 +9,12 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>{{ $title }} - {{ $name }}</title>
+    <!-- Themify icons -->
+    <link rel="stylesheet" href="../../../assets/admin-page/vendors/themify-icons/css/themify-icons.css">
+
+    <link rel="icon" href="{{ url('storage/logo/' . $profile->picture) }}">
+
+    <title>{{ $title }} - {{ $profile->name }}</title>
 
     <!-- my style -->
     <style>
@@ -25,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" aria-current="page" href="#">Home</a>
+                        <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -34,10 +39,13 @@
                         <a class="nav-link" href="#">Keuangan desa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pertanyaan</a>
+                        <a class="nav-link {{ Request()->is('pertanyaan') ? 'active' : '' }}" href="/pertanyaan">Pertanyaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request()->is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,10 +92,17 @@
             </div>
         </div>
     </nav>
+    <div class="container-fluid">
+        @yield('content')
+    </div>
 
+    @yield('js')
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </body>
 
 </html>
