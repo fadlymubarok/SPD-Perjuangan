@@ -30,9 +30,13 @@ Route::get('/', [UserController::class, 'home']);
 
 // user route
 
+Route::get('keuangan', [UserController::class, 'keuangan']);
+Route::get('keuangan/{news:slug}', [UserController::class, 'keuangan_slug']);
 
+Route::get('event', [UserController::class, 'event']);
+Route::get('event/{news:slug}', [UserController::class, 'event_slug']);
 
-
+Route::get('pemerintahan', [UserController::class, 'pemerintahan']);
 // end user route
 
 // admin route
