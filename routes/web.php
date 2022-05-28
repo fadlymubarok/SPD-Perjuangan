@@ -30,8 +30,10 @@ Route::get('/', [UserController::class, 'home']);
 
 // user route
 
+Route::get('/pertanyaan', [UserController::class, 'pertanyaan']);
+Route::get('/get_question/{id}', [UserController::class, 'get_question']);
 
-
+Route::get('/galeri', [UserController::class, 'galeri']);
 
 // end user route
 

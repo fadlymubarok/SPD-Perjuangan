@@ -17,7 +17,7 @@ class QuestionController extends Controller
     {
         $title = 'Pertanyaan masyarakat';
         $page = 10;
-        $search = Question::latest();
+        $search = Question::OrderBy('updated_at', 'ASC');
         if (Request('search')) {
             $search->where('name', 'like', '%' . Request('search') . '%');
         }
@@ -85,8 +85,9 @@ class QuestionController extends Controller
             'name' => 'required|max:255',
             'body' => 'required'
         ]);
-        $validate['address'] = $request->kp . ' RT. ' . $request->rt . ' RW. ' . $request->rw;
+        $validate['address'] = 'Kp. ' .  $request->kp . ' RT. ' . $request->rt . ' RW. ' . $request->rw;
         $validate['status'] = 0;
+        $validate['updated_at'] = null;
         Question::create($validate);
         return redirect('/admin/question')->with('success', 'Pertanyaan berhasil ditambah');
     }
