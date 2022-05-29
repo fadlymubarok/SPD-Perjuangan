@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProfileDesa;
 use App\Models\News;
 use App\Models\User;
+use App\Models\ProfileAparatur;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -46,6 +47,14 @@ class UserController extends Controller
         $profile = ProfileDesa::first();
         $title = 'Event';
         return view('user.event.show', compact('title', 'event', 'profile', 'author'));
+    }
 
+    public function pemerintahan()
+    {
+        $title = 'Pemerintahan';
+        $pemerintahan = ProfileAparatur::first();
+        $data = ProfileAparatur::all();
+        $profile = ProfileDesa::first();
+        return view('user.pemerintahan.index', compact('title', 'profile', 'pemerintahan', 'data'));
     }
 }

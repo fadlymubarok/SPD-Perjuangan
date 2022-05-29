@@ -2,9 +2,8 @@
 
 @section('content')
     
-<img src="https:://source.unsplash.com/500x500?anime" alt="" srcset="">
 
-<nav class="navbar navbar-expand-lg navbar-dark mt-5" id="nav">
+<nav class="navbar navbar-expand-lg navbar-dark" id="nav">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <h2 class="text-center mx-auto text-light"> Berita Keuangan</h2>

@@ -44,7 +44,7 @@
                             Profil Desa
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profil Pemerintah Desa</a></li>
+                            <li><a class="dropdown-item" href="/pemerintahan">Profil Pemerintah Desa</a></li>
                             <li><a class="dropdown-item" href="#">Profil BPD</a></li>
                             <li><a class="dropdown-item" href="#">Visi Misi</a></li>
                         </ul>
