@@ -30,6 +30,9 @@ Route::get('/', [UserController::class, 'home']);
 
 // user route
 
+Route::get('/about', [UserController::class, 'about']);
+Route::get('/news', [UserController::class, 'news']);
+Route::get('/news/{news:slug}', [UserController::class, 'theNews']);
 
 
 

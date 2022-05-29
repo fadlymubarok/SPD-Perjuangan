@@ -16,6 +16,35 @@
         #nav {
             background-color: rgba(42, 62, 41, 75%);
         }
+
+        .hero img {
+            object-fit: cover;
+            max-height: 25rem;
+            filter: brightness(50%);
+        }
+
+        .news-list > .news-item {
+            display: block;
+            transform: scale(1);
+			transition: .3s ease;
+        }
+        .news-list > .news-item:hover {
+            transform: scale(1.03);
+        }
+        .news .card:hover {
+            background-color: #eee;
+            transition: .3s ease;
+        }
+        .news-item img {
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .the-news img {
+            height: auto;
+            max-height: 400px;
+        }
     </style>
 </head>
 
@@ -25,10 +54,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" aria-current="page" href="#">Home</a>
+                        <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Keuangan desa</a>
@@ -52,13 +81,13 @@
                 </ul>
                 <div class="d-flex justify-content-between" style="width: 125px;">
                     <div class="ml-4">
-                        <img src="assets/user-page/img/facebook.png" alt="facebook icon" width="30px" height="30px">
+                        <img src="{{ asset('assets/user-page/img/facebook.png') }}" alt="facebook icon" width="30px" height="30px">
                     </div>
                     <div class="ml-4">
-                        <img src="assets/user-page/img/whatsapp.png" alt="whatsapp icon" width="30px" height="30px">
+                        <img src="{{ asset('assets/user-page/img/whatsapp.png') }}" alt="whatsapp icon" width="30px" height="30px">
                     </div>
                     <div class="ml-4">
-                        <img src="assets/user-page/img/instagram.png" alt="instagram icon" width="30px" height="30px">
+                        <img src="{{ asset('assets/user-page/img/instagram.png') }}" alt="instagram icon" width="30px" height="30px">
                     </div>
                 </div>
             </div>
@@ -85,6 +114,9 @@
         </div>
     </nav>
 
+    <div class="">
+        @yield('content')
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
