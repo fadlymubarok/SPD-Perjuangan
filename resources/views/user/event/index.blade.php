@@ -3,7 +3,7 @@
 @section('content')
 
 <div>
-    <h1 class="text-center">Upcoming Events</h1>
+    <h1 class="text-center">Events</h1>
 </div>
 
 <div class="container">
