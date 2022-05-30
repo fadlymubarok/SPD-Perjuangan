@@ -32,9 +32,26 @@ Route::get('kontak', [UserController::class, 'kontak']);
 
 // user route
 
+Route::get('keuangan', [UserController::class, 'keuangan']);
+Route::get('keuangan/{news:slug}', [UserController::class, 'keuangan_slug']);
 
 
+Route::get('event', [UserController::class, 'event']);
+Route::get('event/{news:slug}', [UserController::class, 'event_slug']);
 
+Route::get('pemerintahan', [UserController::class, 'pemerintahan']);
+
+Route::get('/about', [UserController::class, 'about']);
+Route::get('/news', [UserController::class, 'news']);
+Route::get('/news/{news:slug}', [UserController::class, 'theNews']);
+
+Route::get('/pertanyaan', [UserController::class, 'pertanyaan']);
+Route::get('/get_question/{id}', [UserController::class, 'get_question']);
+
+
+Route::get('/galeri', [UserController::class, 'galeri']);
+
+Route::get('bpd', [UserController::class, 'bpd']);
 // end user route
 
 // admin route
@@ -94,6 +111,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::get('getSlug', [NewsController::class, 'getSlug']);
 });
+
 
 
 require __DIR__ . '/auth.php';

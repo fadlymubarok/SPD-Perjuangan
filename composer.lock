@@ -32,7 +32,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+   -master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -8114,4 +8114,6 @@
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
+
+    "plugin-api-version": "2.0.0"
 }
