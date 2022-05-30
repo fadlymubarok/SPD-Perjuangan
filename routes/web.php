@@ -27,6 +27,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [UserController::class, 'home']);
+Route::get('prestasi', [UserController::class, 'prestasi']);
+Route::get('kontak', [UserController::class, 'kontak']);
 
 // user route
 
