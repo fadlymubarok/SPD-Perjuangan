@@ -1,5 +1,10 @@
 @extends('user.layouts.master')
 
+
+
+
+
+
 @section('content')
 
 <div class="hero">

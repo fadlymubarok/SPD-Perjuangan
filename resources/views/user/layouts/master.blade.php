@@ -12,6 +12,8 @@
 
 
 
+
+
     <!-- Themify icons -->
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/themify-icons/css/themify-icons.css">
 
@@ -94,7 +96,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/pemerintahan">Profil Pemerintah Desa</a></li>
                             <li><a class="dropdown-item" href="#">Profil BPD</a></li>
-                            <li><a class="dropdown-item" href="#">Visi Misi</a></li>
+                            <li><a class="dropdown-item" href="prestasi">Visi Misi</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -141,7 +143,9 @@
             </div>
         </div>
     </nav>
-
+    <div class="container-fluid">
+    @yield('content')
+    </div>
 
 
     <div class="container-fluid">
