@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 
 @section('content')
@@ -45,6 +45,18 @@
             @enderror
             <p class="text-secondary" style="font-size: 12px; margin-top: -5px;">* isi jika ingin ganti gambar</p>
         </div>
+
+        <div class="form-group">
+            <label for="background" class="control-label mb-1">Background</label>
+            <input name="background" type="file" class="form-control border-0 pl-0 @error('background') is-invalid @enderror" value="{{ $data->background }}" autofocus>
+            @error('background')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+            <p class="text-secondary" style="font-size: 12px; margin-top: -5px;">* isi jika ingin ganti gambar</p>
+        </div>
+
         <div class="form-group">
             <a href="/admin/profile" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-warning rounded">Update</button>

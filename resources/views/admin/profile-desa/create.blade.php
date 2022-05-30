@@ -36,13 +36,24 @@
 
         <div class="form-group">
             <label for="picture" class="control-label mb-0">Logo</label>
-            <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror" placeholder="picture position.." autofocus>
+            <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror" placeholder="picture.." autofocus>
             @error('picture')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
+
+        <div class="form-group">
+            <label for="background" class="control-label mb-0">Backgorund</label>
+            <input name="background" type="file" class="form-control border-0 pl-0 @error('background') is-invalid @enderror" placeholder="background.." autofocus>
+            @error('background')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
         <div class="form-group">
             <a href="/admin/profile" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-primary rounded">Submit</button>

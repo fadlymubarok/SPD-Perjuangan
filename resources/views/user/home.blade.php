@@ -9,8 +9,7 @@
 
 <div class="hero">
     <div class="card bg-dark text-white" style="border: none; border-radius: 0">
-        {{-- <img src="https://source.unsplash.com/1200x400?village" class="card-img" alt="..."> --}}
-        <img src="https://source.unsplash.com/random?village" class="card-img" alt="...">
+        <img src="{{ url('storage/bg/' . $profile->background) }}" class="card-img" alt="...">
         <div class="card-img-overlay d-flex justify-content-center align-items-center flex-column">
             <h1 class="card-title">{{ $profile->name }}</h1>
             <h1 class="card-title">{{ $profile->address }}.</h1>
