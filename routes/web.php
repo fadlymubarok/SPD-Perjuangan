@@ -30,11 +30,16 @@ Route::get('/', [UserController::class, 'home']);
 
 // user route
 
+
 Route::get('/about', [UserController::class, 'about']);
 Route::get('/news', [UserController::class, 'news']);
 Route::get('/news/{news:slug}', [UserController::class, 'theNews']);
 
+Route::get('/pertanyaan', [UserController::class, 'pertanyaan']);
+Route::get('/get_question/{id}', [UserController::class, 'get_question']);
 
+
+Route::get('/galeri', [UserController::class, 'galeri']);
 
 // end user route
 
