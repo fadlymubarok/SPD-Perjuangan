@@ -6,7 +6,7 @@
     <div class="col-sm-4 ml-0 pl-0">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Form Create Profile</h1>
+                <h1>Form Tambah Posisi</h1>
             </div>
         </div>
     </div>

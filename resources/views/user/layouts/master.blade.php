@@ -65,16 +65,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-
-                        <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
-
                         <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" href="/">Home</a>
-
                     </li>
                     <li class="nav-item">
-
-                        <a class="nav-link">About</a>
-
                         <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
@@ -89,14 +82,17 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Request()->is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request()->is('kontak') ? 'active' : '' }}" href="/kontak">Kontak Kami</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profil Desa
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/pemerintahan">Profil Pemerintah Desa</a></li>
-                            <li><a class="dropdown-item" href="#">Profil BPD</a></li>
-                            <li><a class="dropdown-item" href="prestasi">Visi Misi</a></li>
+                            <li><a class="dropdown-item" href="/bpd">Profil BPD</a></li>
+                            <li><a class="dropdown-item" href="prestasi">Prestasi</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -110,14 +106,6 @@
                     </div>
                     <div class="ml-4">
                         <img src="../../assets/user-page/img/instagram.png" alt="instagram icon" width="30px" height="30px">
-
-                        <img src="{{ asset('assets/user-page/img/facebook.png') }}" alt="facebook icon" width="30px" height="30px">
-                    </div>
-                    <div class="ml-4">
-                        <img src="{{ asset('assets/user-page/img/whatsapp.png') }}" alt="whatsapp icon" width="30px" height="30px">
-                    </div>
-                    <div class="ml-4">
-                        <img src="{{ asset('assets/user-page/img/instagram.png') }}" alt="instagram icon" width="30px" height="30px">
                     </div>
                 </div>
             </div>
@@ -143,12 +131,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
-    @yield('content')
-    </div>
-
-
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         @yield('content')
     </div>
 

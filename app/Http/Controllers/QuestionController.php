@@ -51,26 +51,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $title = 'bertanya';
 
-        // profile
-        $cek_nama = ProfileDesa::count();
-        if ($cek_nama > 0) {
-            $name = ProfileDesa::first();
-            $name = $name->name;
-        } else {
-            $name = 'Spd Perjuangan';
-        }
-
-        $cek_logo = ProfileDesa::count();
-        if ($cek_logo > 0) {
-            $logo = ProfileDesa::first();
-            $logo = $logo->picture;
-        } else {
-            $logo = '';
-        }
-
-        return view('admin.question.create', compact('title', 'name', 'logo'));
     }
 
     /**
@@ -81,15 +62,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required|max:255',
-            'body' => 'required'
-        ]);
-        $validate['address'] = 'Kp. ' .  $request->kp . ' RT. ' . $request->rt . ' RW. ' . $request->rw;
-        $validate['status'] = 0;
-        $validate['updated_at'] = null;
-        Question::create($validate);
-        return redirect('/admin/question')->with('success', 'Pertanyaan berhasil ditambah');
+
     }
 
     /**

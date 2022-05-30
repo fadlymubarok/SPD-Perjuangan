@@ -29,6 +29,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', [UserController::class, 'home']);
 Route::get('prestasi', [UserController::class, 'prestasi']);
 Route::get('kontak', [UserController::class, 'kontak']);
+Route::post('kontak', [UserController::class, 'kontak_post']);
 
 // user route
 
@@ -52,6 +53,7 @@ Route::get('/get_question/{id}', [UserController::class, 'get_question']);
 Route::get('/galeri', [UserController::class, 'galeri']);
 
 Route::get('bpd', [UserController::class, 'bpd']);
+
 // end user route
 
 // admin route
