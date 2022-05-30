@@ -3,20 +3,20 @@
 @section('content')
 
 <div>
-    <h1 class="text-center">Upcoming Events</h1>
+    <h1 class="text-center">Events</h1>
 </div>
 
 <div class="container">
     <div class="row mt-3 justify-content-around">
         @if($event->count())
         @foreach($event as $col)
-            <div class="card mb-3 mt-2 shadow-sm shadow-left shadow-bottom" style="max-width: 540px; height: 300px;">
+            <div class="card mb-3 mt-2 shadow-sm shadow-left shadow-bottom" style="max-width: 540px; height: 200px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="{{ asset('../storage/gambar_berita/'. $col->picture) }}" class="img-fluid rounded-start" alt="{{ $col->picture }}">
+                    <img src="{{ asset('../storage/gambar_berita/'. $col->picture) }}" class="rounded mt-2" style="max-width: 180px; height:180px;" alt="{{ $col->picture }}">
                   </div>
                   <div class="col-md-8">
-                      <a href="/event/{{ $col->slug }}" class="text-decoration-none text-dar ">
+                      <a href="/event/{{ $col->slug }}" class="text-decoration-none text-dark ">
                         <div class="card-body">
                         <h5 class="card-title">{{ $col->title}}</h5>
                         <p class="card-text">{!! $col->excerpt !!}</p>
@@ -33,8 +33,10 @@
             </div>
             @endif
     </div>
-    <div class="d-flex mx-auto">
-        {{ $event->links() }}
+    <div class="container my-5 border-end border-bottom border-2">
+        <div class="d-flex justify-content-center">
+            {{ $event->links() }}
+        </div>
     </div>
 </div>
 @endsection

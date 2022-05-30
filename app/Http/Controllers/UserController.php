@@ -20,7 +20,8 @@ class UserController extends Controller
     {
         $title = 'Home';
         $profile = ProfileDesa::first();
-        return view('user.home', compact('title', 'profile'));
+        $news = News::where('category', 'berita')->paginate(1);
+        return view('user.home', compact('title', 'profile', 'news'));
     }
     public function prestasi()
     {
@@ -38,9 +39,20 @@ class UserController extends Controller
         $kontak = Achievement::all();
         
         return view('user.kontak.index', compact('title', 'profile', 'kontak'));
+    }
 
+    public function kontak_post(request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required|max:255',
+            'body' => 'required'
+        ]);
+        $validate['address'] = 'Kp. ' .  $request->kp . ' RT. ' . $request->rt . ' RW. ' . $request->rw;
+        $validate['status'] = 0;
+        $validate['updated_at'] = null;
+        Question::create($validate);
 
-        return view('user.home', compact('title', 'profile'));
+        return redirect('/kontak')->with('success', 'Pertanyaan berhasil dikirim');
     }
 
     public function keuangan()
@@ -87,12 +99,16 @@ class UserController extends Controller
     public function bpd()
     {
         $title = 'BPD';
-        $data = ProfileBpd::all();
+        $anggota_1 = ProfileBpd::where('position', 'anggota 1')->first();
+        $anggota_2 = ProfileBpd::where('position', 'anggota 2')->first();
+        $anggota_3 = ProfileBpd::where('position', 'anggota 3')->first();
+        $anggota_4 = ProfileBpd::where('position', 'anggota 4')->first();
+        $sekretaris = ProfileBpd::where('position', 'sekretaris')->first();
+        $wakil_kepala = ProfileBpd::where('position', 'wakil kepala')->first();
+        $kepala = ProfileBpd::where('position', 'kepala')->first();
         $profile = ProfileDesa::first();
-        return view('user.bpd.index', compact('title', 'profile', 'data'));
 
-
-
+        return view('user.bpd.index', compact('title', 'profile', 'anggota_1', 'anggota_2', 'anggota_3', 'anggota_4', 'wakil_kepala', 'kepala', 'sekretaris'));
     }
 
     public function about()
@@ -141,7 +157,7 @@ class UserController extends Controller
     {
         $title = 'Galeri';
         $profile = ProfileDesa::first();
-        $galeri = Achievement::paginate(8);
+        $galeri = News::whereIn('category', ['event', 'berita'])->paginate(8);
         return view('user.galeri.index', compact('title', 'profile', 'galeri'));
 
     }

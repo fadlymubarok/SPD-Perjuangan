@@ -266,29 +266,29 @@
 </div>
 
   <h2 class="text-center">BPD</h2>
-@if($data->count())
+
   
     <div class="container">
       <div class="level-1 rectangle">
-        <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+        <img src="{{ asset('../storage/gambar_bpd/' . $kepala->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $kepala->picture }}">
         <h1>Ketua</h1>
       </div>
       <ol class="level-2-wrapper">
         <li>
           <div class="level-2 rectangle">
-            <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+            <img src="{{ asset('../storage/gambar_bpd/' . $wakil_kepala->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $wakil_kepala->picture }}">
             <h2>Wakil Ketua</h2>
           </div>
           <ol class="level-3-wrapper">
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_1->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_1->picture }}">
                 <h3>Angota</h3>
               </div>
             </li>
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_2->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_2->picture }}">
                 <h3>Angota</h3>
               </div>
             </li>
@@ -296,19 +296,19 @@
         </li>
         <li>
           <div class="level-2 rectangle">
-            <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+            <img src="{{ asset('../storage/gambar_bpd/' . $sekretaris->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $sekretaris->picture }}">
             <h2>Sekretaris</h2>
           </div>
           <ol class="level-3-wrapper">
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_3->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_3->picture }}">
                 <h3>Angota</h3>
               </div>
             </li>
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $data->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $data->picture }}">
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_4->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_4->picture }}">
                 <h3>Angota</h3>
               </div>
             </li>
@@ -317,9 +317,4 @@
       </ol>
     </div>
 
-@else
-    <div class="alert alert-info" role="alert">
-        <p>tidak ada data</p>
-    </div>
-@endif
 @endsection

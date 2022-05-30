@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-<a href="/admin/question/create" class="btn btn-primary mb-2 rounded">+ Tambah Pertanyaan sementara</a>
 <div class="card shadow p-3">
     <div class="table-responsive">
         @if(session('success'))

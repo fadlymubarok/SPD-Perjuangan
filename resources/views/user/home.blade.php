@@ -12,7 +12,7 @@
         {{-- <img src="https://source.unsplash.com/1200x400?village" class="card-img" alt="..."> --}}
         <img src="https://source.unsplash.com/random?village" class="card-img" alt="...">
         <div class="card-img-overlay d-flex justify-content-center align-items-center flex-column">
-            <h1 class="card-title">{{ $name }}</h1>
+            <h1 class="card-title">{{ $profile->name }}</h1>
             <h1 class="card-title">{{ $profile->address }}.</h1>
         </div>
     </div>
@@ -25,8 +25,8 @@
         </span>
     </nav>
     <div class="container news-list">
-
         @if ($news->count())
+
             @foreach ($news as $n)
             <div class="container-fluid news-item my-4 p-2 border-start border-bottom border-4">
                 <a href="news/{{ $n->slug }}" class="card text-dark text-decoration-none" style="border: none;">
