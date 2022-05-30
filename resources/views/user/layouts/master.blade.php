@@ -17,6 +17,7 @@
             background-color: rgba(42, 62, 41, 75%);
         }
     </style>
+    @yield('style')
 </head>
 
 <body>

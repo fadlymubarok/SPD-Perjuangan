@@ -37,6 +37,8 @@ Route::get('event', [UserController::class, 'event']);
 Route::get('event/{news:slug}', [UserController::class, 'event_slug']);
 
 Route::get('pemerintahan', [UserController::class, 'pemerintahan']);
+
+Route::get('bpd', [UserController::class, 'bpd']);
 // end user route
 
 // admin route

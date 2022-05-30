@@ -6,6 +6,7 @@ use App\Models\ProfileDesa;
 use App\Models\News;
 use App\Models\User;
 use App\Models\ProfileAparatur;
+use App\Models\ProfileBpd;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -56,5 +57,13 @@ class UserController extends Controller
         $data = ProfileAparatur::all();
         $profile = ProfileDesa::first();
         return view('user.pemerintahan.index', compact('title', 'profile', 'pemerintahan', 'data'));
+    }
+
+    public function bpd()
+    {
+        $title = 'BPD';
+        $data = ProfileBpd::all();
+        $profile = ProfileDesa::first();
+        return view('user.bpd.index', compact('title', 'profile', 'data'));
     }
 }
