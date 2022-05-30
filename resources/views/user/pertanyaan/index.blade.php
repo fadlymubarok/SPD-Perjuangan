@@ -19,7 +19,7 @@
                     <h5 class="card-title">Penanya: {{ $col->name }}</h5>
                     <p class="card-text">{{ $col->body }}</p>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $col->id }}" id="btn-modal" onclick="isi_modal();">
+                    <button type="button" class="btn btn-primary btn-modal" data-bs-toggle="modal" data-bs-target="#modalQuestion" data-id="{{ $col->id }}">
                         Tanggapan
                     </button>
 
@@ -27,11 +27,11 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalQuestion" tabindex="-1" aria-labelledby="modalQuestionLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pertanyaan</h5>
+                        <h5 class="modal-title" id="modalQuestionLabel">Pertanyaan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -53,20 +53,25 @@
 
 @section('js')
 <script>
-    function isi_modal() {
-        $btn = $('#btn-modal').val()
-        console.log($btn)
+    $('.btn-modal').on('click', function() {
+        const btn = $(this).data('id');
+        // console.log(btn)
         $.ajax({
-            "url": "{{ url('') }}/get_question/" + $btn,
+            "url": "{{ url('') }}/get_question/" + btn,
             "data": $(this).data('id'),
             "success": function(res) {
                 $('.modal-body').html(`<h5>` + res.name + ` - penanya</h5>
-                        <p>` + res.body + `</p>
-                        <hr>
-                        <h5>Admin - Penjawab</h5>
-                        <p>` + res.opinion + `</p>`)
+                    <p>` + res.body + `</p>
+                    <hr>
+                    <h5>Admin - Penjawab</h5>
+                    <p>` + res.opinion + `</p>`)
             }
         })
-    }
+        $('#modalQuestion').modal('show');
+    });
+
+    $('#modalQuestion').on('hidden.bs.modal', function (event) {
+        $('.modal-body').html('');
+	})
 </script>
 @endsection
