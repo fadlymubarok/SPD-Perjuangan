@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
+
+
     <!-- Themify icons -->
     <link rel="stylesheet" href="../../../assets/admin-page/vendors/themify-icons/css/themify-icons.css">
 
@@ -51,6 +54,7 @@
             max-height: 400px;
         }
     </style>
+    @yield('style')
 </head>
 
 <body>
@@ -63,19 +67,22 @@
                         <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
 
                         <a class="nav-link {{ Request()->is('/') ? 'active' : '' }}" href="/">Home</a>
->
+
                     </li>
                     <li class="nav-item">
+
+                        <a class="nav-link">About</a>
+
                         <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Keuangan desa</a>
+                        <a class="nav-link {{ Request()->is('keuangan') ? 'active' : '' }}" href="/keuangan">Keuangan desa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request()->is('pertanyaan') ? 'active' : '' }}" href="/pertanyaan">Pertanyaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Event</a>
+                        <a class="nav-link {{ Request()->is('event') ? 'active' : '' }}" href="/event">Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request()->is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
@@ -85,7 +92,7 @@
                             Profil Desa
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profil Pemerintah Desa</a></li>
+                            <li><a class="dropdown-item" href="/pemerintahan">Profil Pemerintah Desa</a></li>
                             <li><a class="dropdown-item" href="#">Profil BPD</a></li>
                             <li><a class="dropdown-item" href="#">Visi Misi</a></li>
                         </ul>
@@ -93,6 +100,15 @@
                 </ul>
                 <div class="d-flex justify-content-between" style="width: 125px;">
                     <div class="ml-4">
+
+                        <img src="../../assets/user-page/img/facebook.png" alt="facebook icon" width="30px" height="30px">
+                    </div>
+                    <div class="ml-4">
+                        <img src="../../assets/user-page/img/whatsapp.png" alt="whatsapp icon" width="30px" height="30px">
+                    </div>
+                    <div class="ml-4">
+                        <img src="../../assets/user-page/img/instagram.png" alt="instagram icon" width="30px" height="30px">
+
                         <img src="{{ asset('assets/user-page/img/facebook.png') }}" alt="facebook icon" width="30px" height="30px">
                     </div>
                     <div class="ml-4">
@@ -125,14 +141,13 @@
             </div>
         </div>
     </nav>
+
+
+
     <div class="container-fluid">
         @yield('content')
     </div>
 
-
-    <div class="">
-        @yield('content')
-    </div>
     @yield('js')
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
