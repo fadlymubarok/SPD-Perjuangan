@@ -84,8 +84,8 @@ class AchievementController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:news|max:255',
+            'title' => 'required|unique:achievements|max:255',
+            'slug' => 'required|unique:achievements|max:255',
             'achievement_date' => 'required',
             'picture' => 'required|file|max:5024',
             'body' => 'required'
@@ -151,7 +151,7 @@ class AchievementController extends Controller
     public function update(Request $request, Achievement $achievement)
     {
         $rule = [
-            'title' => 'required|max:40',
+            'title' => 'required|unique:achievements|max:40',
             'achievement_date' => 'required',
             'body' => 'required'
         ];

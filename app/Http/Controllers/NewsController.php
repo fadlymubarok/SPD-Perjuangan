@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
 class NewsController extends Controller
 {
@@ -86,7 +87,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|unique:news|max:255',
             'slug' => 'required|unique:news|max:255',
             'category' => 'required|min:1',
             'picture' => 'required|file|max:5024',
@@ -154,7 +155,7 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $rule = [
-            'title' => 'required|max:255',
+            'title' => 'required|unique:news|max:255',
             'category' => 'required|min:1',
             'body' => 'required'
         ];
@@ -169,8 +170,9 @@ class NewsController extends Controller
 
         $validate = $request->validate($rule);
 
-        if ($request->file('picture') != $news->picture && $request->file('picture') != '') {
+        if ($request->file('picture') != $news->picture) {
             $picture_name = $request->file('picture')->getClientOriginalName();
+            dd($picture_name);
 
             $request->file('picture')->storeAs('public/gambar_berita', $picture_name);
         }
