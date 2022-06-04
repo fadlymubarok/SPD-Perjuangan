@@ -60,13 +60,15 @@ class ProfileDesaController extends Controller
 
         $cek = ProfileDesa::count();
         if ($cek > 0) {
-            $logo = ProfileDesa::first();
-            $logo = $logo->picture;
+            $profile = ProfileDesa::first();
+            $logo = $profile->picture;
+            $background = $profile->backgorund;
         } else {
             $logo = '';
+            $background = '';
         }
 
-        return view('admin.profile-desa.create', compact('title', 'name', 'logo'));
+        return view('admin.profile-desa.create', compact('title', 'name', 'logo', 'background'));
     }
 
     /**
@@ -80,14 +82,24 @@ class ProfileDesaController extends Controller
         $validate = $request->validate([
             'name' => 'required|unique:profile_desa|max:255',
             'address' => 'required|max:255',
-            'picture' => 'required|file|image|max:2048'
+            'picture' => 'required|file|image|max:2048',
+            'background' => 'required|file|image|max:2048',
+            'about_web' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'prestasi' => 'required',
         ]);
 
         $picture_name = $request->file('picture')->getClientOriginalName();
-        $path = $request->file('picture')->storeAs('public/logo', $picture_name);
-
+        $path_logo = $request->file('picture')->storeAs('public/logo', $picture_name);
         $validate['picture'] = $picture_name;
+
+        $background_name = $request->file('background')->getClientOriginalName();
+        $path_bg = $request->file('background')->storeAs('public/bg', $background_name);
+        $validate['background'] = $background_name;
+
         ProfileDesa::create($validate);
+
         return redirect('/admin/profile-desa')->with('success', 'Profile berhasil ditambah');
     }
 
@@ -124,13 +136,15 @@ class ProfileDesaController extends Controller
 
         $cek = ProfileDesa::count();
         if ($cek > 0) {
-            $logo = ProfileDesa::first();
-            $logo = $logo->picture;
+            $profile = ProfileDesa::first();
+            $logo = $profile->picture;
+            $background = $profile->backgorund;
         } else {
             $logo = '';
+            $background = '';
         }
 
-        return view('admin.profile-desa.edit', compact('title', 'name', 'logo', 'data'));
+        return view('admin.profile-desa.edit', compact('title', 'name', 'logo', 'background', 'data'));
     }
 
     /**
@@ -145,7 +159,10 @@ class ProfileDesaController extends Controller
         $rule = [
             'name' => 'required|min:5|max:255',
             'address' => 'required|max:255',
-
+            'about_web' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'prestasi' => 'required',
         ];
 
         $profile = ProfileDesa::find($profile_id);
@@ -161,10 +178,18 @@ class ProfileDesaController extends Controller
 
         if ($request->picture != $profile->picture && $request->file('picture') != '') {
             $picture_name = $request->file('picture')->getClientOriginalName();
-            $path = $request->file('picture')->storeAs('public/logo', $picture_name);
+            $path_logo = $request->file('picture')->storeAs('public/logo', $picture_name);
 
             $validate['picture'] = $picture_name;
         }
+
+        if ($request->background != $profile->background && $request->file('background') != '') {
+            $background_name = $request->file('background')->getClientOriginalName();
+            $path_bg = $request->file('background')->storeAs('public/bg', $background_name);
+
+            $validate['background'] = $background_name;
+        }
+
         ProfileDesa::where('id', $profile_id)->update($validate);
         return redirect('/admin/profile-desa')->with('update', 'Profile berhasil diupdate');
     }

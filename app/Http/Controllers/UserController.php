@@ -20,7 +20,15 @@ class UserController extends Controller
     {
         $title = 'Home';
         $profile = ProfileDesa::first();
-        $news = News::where('category', 'berita')->paginate(1);
+        // $news = News::where('category', 'berita')->paginate(3);
+        $get = News::orderBy('id', 'desc')->take(3);
+        if(Request('search')) {
+            $get->where('title', 'like', '%' . request('search'). '%')
+            ->orwhere('excerpt', 'like', '%' . request('search'). '%')
+            ->orwhere('body', 'like', '%' . request('search'). '%');
+        };
+
+        $news = $get->get();
         return view('user.home', compact('title', 'profile', 'news'));
     }
     public function prestasi()
@@ -28,7 +36,6 @@ class UserController extends Controller
         $title = 'Home';
         $profile = ProfileDesa::first();
         $prestasi = Achievement::all();
-        
         
         return view('user.prestasi.index', compact('title', 'profile', 'prestasi'));
     }
@@ -59,7 +66,14 @@ class UserController extends Controller
     {
         $title = 'Keuangan';
         $profile = ProfileDesa::first();
-        $keuangan = News::where('category', 'keuangan')->paginate(4);
+        $get = News::where('category', 'keuangan');
+        if(Request('search')) {
+            $get->where('title', 'like', '%' . request('search'). '%')
+            ->orwhere('excerpt', 'like', '%' . request('search'). '%')
+            ->orwhere('body', 'like', '%' . request('search'). '%');
+        };
+        $keuangan = $get->paginate(4);
+
         return view('user.keuangan.index',  compact('title', 'profile', 'keuangan'));
     }
     
@@ -71,11 +85,18 @@ class UserController extends Controller
         return view('user.keuangan.show', compact('title', 'keuangan', 'profile', 'author'));
 
     }
+
     public function event()
     {
         $title = 'Event';
         $profile = ProfileDesa::first();
-        $event = News::where('category', 'event')->paginate(4);
+        $get = News::where('category', 'event');
+        if(Request('search')) {
+            $get->where('title', 'like', '%' . request('search'). '%')
+            ->orwhere('excerpt', 'like', '%' . request('search'). '%')
+            ->orwhere('body', 'like', '%' . request('search'). '%');
+        };
+        $event = $get->paginate(4);
         return view('user.event.index',  compact('title', 'profile', 'event'));
     }
 
@@ -103,9 +124,9 @@ class UserController extends Controller
         $anggota_2 = ProfileBpd::where('position', 'anggota 2')->first();
         $anggota_3 = ProfileBpd::where('position', 'anggota 3')->first();
         $anggota_4 = ProfileBpd::where('position', 'anggota 4')->first();
-        $sekretaris = ProfileBpd::where('position', 'sekretaris')->first();
-        $wakil_kepala = ProfileBpd::where('position', 'wakil kepala')->first();
-        $kepala = ProfileBpd::where('position', 'kepala')->first();
+        $sekretaris = ProfileBpd::where('position', 'Sekretaris')->first();
+        $wakil_kepala = ProfileBpd::where('position', 'wakil ketua')->first();
+        $kepala = ProfileBpd::where('position', 'Ketua')->first();
         $profile = ProfileDesa::first();
 
         return view('user.bpd.index', compact('title', 'profile', 'anggota_1', 'anggota_2', 'anggota_3', 'anggota_4', 'wakil_kepala', 'kepala', 'sekretaris'));
@@ -116,8 +137,9 @@ class UserController extends Controller
         $title = 'About';
         $profile = ProfileDesa::first();
         $name = $profile->name;
+        $about= $profile->about_web;
         $news = News::latest()->paginate(3);
-        return view('user.about', compact('title', 'profile', 'name', 'news'));
+        return view('user.about', compact('title', 'profile', 'name', 'about', 'news'));
     }
 
     public function news()
@@ -126,24 +148,28 @@ class UserController extends Controller
         $profile = ProfileDesa::first();
         $name = $profile->name;
         $news = News::latest()->paginate(7);
-        return view('user.news', compact('title', 'profile', 'name', 'news'));
+        return view('user.news.index', compact('title', 'profile', 'name', 'news'));
     }
 
-    public function theNews(News $news)
+    public function news_slug(News $news)
     {
         $title = 'Berita';
         $profile = ProfileDesa::first();
-        $name = $profile->name;
-        return view('user.theNews', compact('title', 'profile', 'name', 'news'));
-
-        return view('user.home', compact('title', 'profile'));
+        // $name = $profile->name;
+        $author = User::first();
+        return view('user.news.show', compact('title', 'profile', 'news', 'author'));
     }
 
     public function pertanyaan()
     {
         $title = 'Pertanyaan';
         $profile = ProfileDesa::first();
-        $pertanyaan = Question::where('status', 1)->paginate(9);
+        $get = Question::where('status', 1);
+        if (Request('search')) {
+            $get->where('name', 'like', '%' . Request('search') . '%');
+        }
+
+        $pertanyaan = $get->paginate(9);
         return view('user.pertanyaan.index', compact('title', 'profile', 'pertanyaan'));
     }
 
@@ -157,7 +183,7 @@ class UserController extends Controller
     {
         $title = 'Galeri';
         $profile = ProfileDesa::first();
-        $galeri = News::whereIn('category', ['event', 'berita'])->paginate(8);
+        $galeri = News::whereIn('category', ['event', 'berita'])->paginate(12);
         return view('user.galeri.index', compact('title', 'profile', 'galeri'));
 
     }
