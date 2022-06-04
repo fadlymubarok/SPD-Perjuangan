@@ -44,7 +44,7 @@ Route::get('pemerintahan', [UserController::class, 'pemerintahan']);
 
 Route::get('/about', [UserController::class, 'about']);
 Route::get('/news', [UserController::class, 'news']);
-Route::get('/news/{news:slug}', [UserController::class, 'theNews']);
+Route::get('/news/{news:slug}', [UserController::class, 'news_slug']);
 
 Route::get('/pertanyaan', [UserController::class, 'pertanyaan']);
 Route::get('/get_question/{id}', [UserController::class, 'get_question']);
