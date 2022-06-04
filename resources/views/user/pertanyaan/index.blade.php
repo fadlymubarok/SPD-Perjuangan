@@ -1,12 +1,16 @@
 @extends('user.layouts.master')
 
+@section('form')
+<form class="d-flex" action="/pertanyaan" method="get">
+    <input class="form-control me-1" type="search" name="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-light" type="submit">Cari</button>
+</form>
+@endsection
+
 @section('content')
-<div class="d-flex mt-2">
-    <a href="/" class="text-danger">Home</a>
-    <span>&nbsp; >> Pertanyaan</span>
-</div>
-<div class="text-center mt-3">
+<div class="text-center my-3">
     <h1>Pertanyaan Masyarakat</h1>
+    
 </div>
 
 <div class="container">
@@ -14,7 +18,7 @@
     <div class="row mt-3">
         @foreach($pertanyaan as $col)
         <div class="col-md-4 mb-3 mr-2">
-            <div class="card" style="width: 21rem; height: 10rem;">
+            <div class="card" style="max-width: 21rem; height: auto;">
                 <div class="card-body">
                     <h5 class="card-title">Penanya: {{ $col->name }}</h5>
                     <p class="card-text">{{ $col->body }}</p>
@@ -43,11 +47,22 @@
         @endforeach
     </div>
     @else
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info text-center" role="alert">
         <h4>Belum ada yang bertanya</h4>
     </div>
     @endif
-    {{ $pertanyaan->links() }}
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-info mx-auto" href="kontak">Ajukan pertanyaan</a>
+        </div>
+    </div>
+    @if ($pertanyaan->count() > 9)
+        <div class="container mb-5 mt-3 border-end border-bottom border-2">
+            <div class="d-flex justify-content-center">
+                {{ $pertanyaan->links() }}
+            </div>
+        </div>
+    @endif
 </div>
 @endsection
 
@@ -67,7 +82,7 @@
                     <p>` + res.opinion + `</p>`)
             }
         })
-        $('#modalQuestion').modal('show');
+        // $('#modalQuestion').modal('show');
     });
 
     $('#modalQuestion').on('hidden.bs.modal', function (event) {

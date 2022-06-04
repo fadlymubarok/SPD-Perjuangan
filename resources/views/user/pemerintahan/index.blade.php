@@ -2,24 +2,23 @@
 
 @section('content')
 
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" aria-current="page"><a href="/" class="text-danger">Home</a> >> Pemerintahan </li>
         </ol>
     </nav>
-</div>
-<div>
+</div> --}}
 
-<div class="container">
+<div class="my-4 text-center">
     <h2>Pemerintahan Desa</h2>
 </div>
 
 @if($data->count())
 @foreach($data as $col)
-    <div class="container">
+    <div class="container mb-3">
         <div class="text-center">
-            <h3>{{$col->kedudukan}} :</h3>
+            <h3>{{$col->position}} :</h3>
             <img src="{{ asset('../storage/gambar_aparatur/' . $col->picture )}}" class="img-thumbnail my-2" width="200" height="200" alt="{{ $col->picture }}">
             <h4>{{ $col->name }}</h4>
         </div>
@@ -47,9 +46,11 @@
 
 @endforeach
 @else
-    <div class="alert alert-info" role="alert">
-        <p>tidak ada data</p>
+<div class="container">
+    <div class="alert alert-info text-center pb-0" role="alert">
+        <p class="fs-4 fw-bold  ">Tidak ada data</p>
     </div>
+</div>
 @endif
 
 @endsection
