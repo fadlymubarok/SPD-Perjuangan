@@ -55,6 +55,42 @@
         </div>
 
         <div class="form-group">
+            <label for="about_web" class="control-label mb-1">About Us</label>
+            @error('about_web')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="about_web" type="hidden" name="about_web" value="{{ old('about_web') }}">
+            <trix-editor input="about_web"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="visi" class="control-label mb-1">Visi</label>
+            @error('visi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="visi" type="hidden" name="visi" value="{{ old('visi') }}">
+            <trix-editor input="visi"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="misi" class="control-label mb-1">Misi</label>
+            @error('misi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="misi" type="hidden" name="misi" value="{{ old('misi') }}">
+            <trix-editor input="misi"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="prestasi" class="control-label mb-1">Prestasi</label>
+            @error('prestasi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="prestasi" type="hidden" name="prestasi" value="{{ old('prestasi') }}">
+            <trix-editor input="prestasi"></trix-editor>
+        </div>
+
+        <div class="form-group">
             <a href="/admin/profile" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-primary rounded">Submit</button>
         </div>
