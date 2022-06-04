@@ -16,8 +16,13 @@ class CreateProfileDesaTable extends Migration
         Schema::create('profile_desa', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-            $table->string('address', 30);
+            $table->string('address', 50);
             $table->string('picture', 30);
+            $table->string('background', 30);
+            $table->text('about_web');
+            $table->text('visi');
+            $table->text('misi');
+            $table->text('prestasi');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ class CreateProfileDesaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_desas');
+        Schema::dropIfExists('profile_desa');
     }
 }
