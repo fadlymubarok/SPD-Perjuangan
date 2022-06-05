@@ -21,7 +21,7 @@
             <h1 class="text-light">Berita Desa</h1>
         </span>
     </nav>
-<div class="container news-list">
+    <div class="container news-list">
 
         @foreach ($news->skip(1) as $n)
         <div class="container-fluid news-item my-4 p-2 border-start border-bottom border-4">
@@ -47,17 +47,12 @@
     </div>
 </div>
 
-@if ($news->count() > 8)
+@if ($news->hasPages())
 <div class="container my-5 border-end border-bottom border-2">
     <div class="d-flex justify-content-center">
         {{ $news->links() }}
     </div>
 </div>
 @endif
-{{-- <div class="container my-5 border-end border-bottom border-2">
-    <div class="d-flex justify-content-center">
-        {{ $news->links() }}
-    </div>
-</div> --}}
 
 @endsection
