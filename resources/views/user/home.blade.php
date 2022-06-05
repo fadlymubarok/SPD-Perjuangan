@@ -55,6 +55,11 @@
         </div>
     </div>
 </div>
+@else
+<div class="alert alert-info text-center pb-0 mt-5 mx-5" role="alert">
+    <p class="fs-4 fw-bold">Berita tidak tersedia</p>
+</div>
 @endif
+
 
 @endsection

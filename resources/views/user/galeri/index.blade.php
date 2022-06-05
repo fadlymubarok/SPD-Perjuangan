@@ -20,9 +20,11 @@
     </div>
 
     @else
-    <div class="alert alert-info" role="alert">
-        <h4>Belum ada Dokumentasi</h4>
-    </div>
+    <div class="container">
+            <div class="alert alert-info mt-4 pb-0" role="alert">
+                <p class="text-center fs-4 fw-bold ">Dokumentasi tidak ada</p>
+            </div>
+        </div>
     @endif
 
     @if($galeri->count() > 12)

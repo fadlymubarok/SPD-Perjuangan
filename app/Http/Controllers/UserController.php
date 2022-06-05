@@ -33,7 +33,7 @@ class UserController extends Controller
     }
     public function prestasi()
     {
-        $title = 'Home';
+        $title = 'Prestasi';
         $profile = ProfileDesa::first();
         $prestasi = Achievement::all();
         
@@ -41,7 +41,7 @@ class UserController extends Controller
     }
     public function kontak()
     {
-        $title = 'Home';
+        $title = 'Kontak';
         $profile = ProfileDesa::first();
         $kontak = Achievement::all();
         

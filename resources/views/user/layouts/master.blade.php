@@ -143,7 +143,7 @@
                     <div class="d-flex mr-2">
                         <img src="{{ asset('../storage/logo/'. $profile->picture)}}" alt="{{ $profile->picture }}" width="60px" height="60px">
                     </div>
-                    <div class="d-block">
+                    <div class="d-block" style="margin-left: 10px;">
                         <h5 class="mb-0 text-light">{{ $profile->name }}</h5>
                         <p class="text-light">{{ $profile->address }}</p>
                     </div>

@@ -47,8 +47,8 @@
         @endforeach
     </div>
     @else
-    <div class="alert alert-info text-center" role="alert">
-        <h4>Belum ada yang bertanya</h4>
+    <div class="alert alert-info text-center mt-5" role="alert">
+        <h4>Belum ada pertanyaan</h4>
     </div>
     @endif
     <div class="container mt-5">

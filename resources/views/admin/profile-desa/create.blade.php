@@ -6,7 +6,7 @@
     <div class="col-sm-4 ml-0 pl-0">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Form Create Profile</h1>
+                <h1>Form Tambah Profil Desa</h1>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         @csrf
         <div class="form-group mb-2">
             <label for="name" class="control-label">Nama desa</label>
-            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" autofocus>
+            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Desa ..." autofocus>
             @error('name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -26,7 +26,7 @@
 
         <div class="form-group mb-2">
             <label for="address" class="control-label">Alamat desa</label>
-            <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" autofocus>
+            <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" placeholder="jl.xxx kec.xxx kab/kota.xxx">
             @error('address')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -36,7 +36,7 @@
 
         <div class="form-group">
             <label for="picture" class="control-label mb-0">Logo</label>
-            <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror" placeholder="picture.." autofocus>
+            <input name="picture" type="file" class="form-control border-0 pl-0 @error('picture') is-invalid @enderror">
             @error('picture')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -45,8 +45,8 @@
         </div>
 
         <div class="form-group">
-            <label for="background" class="control-label mb-0">Backgorund</label>
-            <input name="background" type="file" class="form-control border-0 pl-0 @error('background') is-invalid @enderror" placeholder="background.." autofocus>
+            <label for="background" class="control-label mb-0">Background Home</label>
+            <input name="background" type="file" class="form-control border-0 pl-0 @error('background') is-invalid @enderror">
             @error('background')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            <label for="about_web" class="control-label mb-1">About Us</label>
+            <label for="about_web" class="control-label mb-1">About web</label>
             @error('about_web')
             <p class="text-danger">{{ $message }}</p>
             @enderror
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label for="visi" class="control-label mb-1">Visi</label>
+            <label for="visi" class="control-label mb-1">Visi desa</label>
             @error('visi')
             <p class="text-danger">{{ $message }}</p>
             @enderror
@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-group">
-            <label for="misi" class="control-label mb-1">Misi</label>
+            <label for="misi" class="control-label mb-1">Misi desa</label>
             @error('misi')
             <p class="text-danger">{{ $message }}</p>
             @enderror
@@ -82,7 +82,7 @@
         </div>
 
         <div class="form-group">
-            <label for="prestasi" class="control-label mb-1">Prestasi</label>
+            <label for="prestasi" class="control-label mb-1">Motivasi Prestasi</label>
             @error('prestasi')
             <p class="text-danger">{{ $message }}</p>
             @enderror
