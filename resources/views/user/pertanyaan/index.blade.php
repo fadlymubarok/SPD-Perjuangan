@@ -56,12 +56,12 @@
             <a class="btn btn-info mx-auto" href="kontak">Ajukan pertanyaan</a>
         </div>
     </div>
-    @if ($pertanyaan->count() > 9)
-        <div class="container mb-5 mt-3 border-end border-bottom border-2">
-            <div class="d-flex justify-content-center">
-                {{ $pertanyaan->links() }}
-            </div>
+    @if ($pertanyaan->hasPages())
+    <div class="container mb-5 mt-3 border-end border-bottom border-2">
+        <div class="d-flex justify-content-center">
+            {{ $pertanyaan->links() }}
         </div>
+    </div>
     @endif
 </div>
 @endsection

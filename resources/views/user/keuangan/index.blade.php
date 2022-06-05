@@ -51,7 +51,7 @@
         </div>
         @endforeach
 
-            @if ($keuangan->count() > 5)
+            @if ($keuangan->hasPages())
             <div class="container my-5 border-end border-bottom border-2">
                 <div class="d-flex justify-content-center">
                     {{ $keuangan->links() }}

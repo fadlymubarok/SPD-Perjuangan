@@ -51,7 +51,7 @@
             </div>
             @endforeach
 
-                @if ($event->count() > 5)
+                @if ($event->hasPages())
                 <div class="container my-5 border-end border-bottom border-2">
                     <div class="d-flex justify-content-center">
                         {{ $event->links() }}

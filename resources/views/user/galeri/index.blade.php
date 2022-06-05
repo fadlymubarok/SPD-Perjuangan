@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    @if($galeri->count() > 12)
+    @if($galeri->hasPages())
     <div class="container my-5 border-end border-bottom border-2">
         <div class="d-flex justify-content-center">
             {{ $galeri->links() }}
