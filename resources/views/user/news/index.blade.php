@@ -42,6 +42,7 @@
             </a>
         </div>
         @endforeach
+        
     @endif
 
     </div>
@@ -54,10 +55,5 @@
     </div>
 </div>
 @endif
-{{-- <div class="container my-5 border-end border-bottom border-2">
-    <div class="d-flex justify-content-center">
-        {{ $news->links() }}
-    </div>
-</div> --}}
 
 @endsection

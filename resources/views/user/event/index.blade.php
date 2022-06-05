@@ -60,8 +60,10 @@
                 @endif
 
             @else
-            <div class="alert alert-info" role="alert">
-                <p class="text-center fw-bold">Tidak ada events</p>
+            <div class="container">
+            <div class="alert alert-info mt-5 pb-0" role="alert">
+                <p class="text-center fs-4 fw-bold ">Event tidak tersedia</p>
+            </div>
             </div>
             @endif
     </div>

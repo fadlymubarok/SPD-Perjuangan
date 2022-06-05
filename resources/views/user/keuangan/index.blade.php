@@ -61,8 +61,8 @@
 
         @else
         <div class="container">
-            <div class="alert alert-info" role="alert">
-                <p>Berita tidak ada</p>
+            <div class="alert alert-info mt-5 pb-0" role="alert">
+                <p class="text-center fs-4 fw-bold ">Berita keuangan tidak tersedia</p>
             </div>
         </div>
         @endif

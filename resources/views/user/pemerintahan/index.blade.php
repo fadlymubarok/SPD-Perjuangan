@@ -48,7 +48,7 @@
 @else
 <div class="container">
     <div class="alert alert-info text-center pb-0" role="alert">
-        <p class="fs-4 fw-bold  ">Tidak ada data</p>
+        <p class="fs-4 fw-bold">Belum membuat struktur</p>
     </div>
 </div>
 @endif
