@@ -14,8 +14,8 @@
     </div>
 
     <div class="container the-news">
-        <h1 class="text-center mb-4">{{ $news->title }}</h1>
-        <p class="card-text text-start"><small class="text-muted">Oleh Admin Desa, Telah Terbit {{ $news->created_at->diffForHumans() }}</small></p>
+        <h1 class="text-center my-4">{{ $news->title }}</h1>
+        <p class="card-text text-start"><small class="text-muted">Oleh {{ $author->name }}, Telah Terbit {{ $news->created_at->diffForHumans() }}</small></p>
         <img src="{{ asset('storage/gambar_berita/'. $news->picture) }}" class="img-fluid" alt="...">
         
         <article class="my-3 fs-5">

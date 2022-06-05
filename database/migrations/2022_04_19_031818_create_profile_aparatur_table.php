@@ -17,11 +17,11 @@ class CreateProfileAparaturTable extends Migration
             $table->id();
             $table->string('name', 40);
             $table->string('position', 30);
-            $table->string('kedudukan', 30);
-            $table->string('tugas', 30);
-            $table->string('fungsi', 30);
-            $table->string('keterangan', 100);
-            $table->string('picture', 30);
+            $table->text('kedudukan');
+            $table->text('tugas');
+            $table->text('fungsi');
+            $table->text('keterangan');
+            $table->string('picture', 255);
             $table->timestamps();
         });
     }

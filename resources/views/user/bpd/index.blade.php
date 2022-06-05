@@ -20,8 +20,8 @@
         list-style: none;
         }
 
-        body {
-        margin: 50px 0 100px;
+        #susunan {
+        margin: 50px 180px;
         text-align: center;
         font-family: "Inter", sans-serif;
         }
@@ -71,8 +71,8 @@
         content: "";
         position: absolute;
         top: -20px;
-        left: 25%;
-        width: 50%;
+        left: 27.3%;
+        width: 48.5%;
         height: 2px;
         background: var(--black);
         }
@@ -148,8 +148,8 @@
         content: "";
         position: absolute;
         top: -20px;
-        left: calc(25% - 5px);
-        width: calc(50% + 10px);
+        left: calc(30% - 2px);
+        width: calc(45% + 15px);
         height: 2px;
         background: var(--black);
         }
@@ -257,59 +257,59 @@
 
 @section('content')
 
-<div class="container-fluid">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page"><a href="/" class="text-danger">Home</a> >> BPD</li>
-        </ol>
-    </nav>
-</div>
 
-  <h2 class="text-center">BPD</h2>
+  <h2 class="text-center mt-3">BPD</h2>
 
   
-    <div class="container">
+    <div class="container" id="susunan">
       <div class="level-1 rectangle">
-        <img src="{{ asset('../storage/gambar_bpd/' . $kepala->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $kepala->picture }}">
         <h1>Ketua</h1>
+        <img src="{{ asset('../storage/gambar_bpd/' . $kepala['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $kepala['picture'] }}">
+        <h1 class="fs-4">{{ $kepala['name'] }}</h1>
       </div>
       <ol class="level-2-wrapper">
         <li>
           <div class="level-2 rectangle">
-            <img src="{{ asset('../storage/gambar_bpd/' . $wakil_kepala->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $wakil_kepala->picture }}">
             <h2>Wakil Ketua</h2>
+            <img src="{{ asset('../storage/gambar_bpd/' . $wakil_kepala['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $wakil_kepala['picture'] }}">
+            <h2 class="fs-4">{{ $wakil_kepala['name'] }}</h2>
           </div>
           <ol class="level-3-wrapper">
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_1->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_1->picture }}">
-                <h3>Angota</h3>
-              </div>
+                <h3>Anggota</h3>
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_1['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_1['picture'] }}">
+                <h3 class="fs-4">{{ $anggota_1['name'] }}</h3>
+                </div>
             </li>
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_2->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_2->picture }}">
-                <h3>Angota</h3>
-              </div>
-            </li>
-          </ol>
-        </li>
+                <h3>Anggota</h3>
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_2['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_2['picture'] }}">
+                <h3 class="fs-4">{{ $anggota_2['name'] }}</h3>
+                </div>
+                </li>
+                </ol>
+                </li>
         <li>
           <div class="level-2 rectangle">
-            <img src="{{ asset('../storage/gambar_bpd/' . $sekretaris->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $sekretaris->picture }}">
             <h2>Sekretaris</h2>
-          </div>
-          <ol class="level-3-wrapper">
-            <li>
-              <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_3->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_3->picture }}">
-                <h3>Angota</h3>
+            <img src="{{ asset('../storage/gambar_bpd/' . $sekretaris['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $sekretaris['picture'] }}">
+            <h2 class="fs-4">{{ $sekretaris['name'] }}</h2>
+            </div>
+            <ol class="level-3-wrapper">
+              <li>
+                <div class="level-3 rectangle">
+                <h3>Anggota</h3>
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_3['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_3['picture'] }}">
+                <h3 class="fs-4">{{ $anggota_3['name'] }}</h3>
               </div>
             </li>
             <li>
               <div class="level-3 rectangle">
-                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_4->picture )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_4->picture }}">
-                <h3>Angota</h3>
+                <h3>Anggota</h3>
+                <img src="{{ asset('../storage/gambar_bpd/' . $anggota_4['picture'] )}}" class="img-thumbnail my-2" width="400" height="800" alt="{{ $anggota_4['picture'] }}">
+                <h3 class="fs-4">{{ $anggota_4['name'] }}</h3>
               </div>
             </li>
           </ol>

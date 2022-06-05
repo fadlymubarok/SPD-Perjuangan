@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 
 @section('content')
@@ -45,8 +45,55 @@
             @enderror
             <p class="text-secondary" style="font-size: 12px; margin-top: -5px;">* isi jika ingin ganti gambar</p>
         </div>
+
         <div class="form-group">
-            <a href="/admin/profile" class="btn btn-danger rounded">Back</a>
+            <label for="background" class="control-label mb-1">Background</label>
+            <input name="background" type="file" class="form-control border-0 pl-0 @error('background') is-invalid @enderror" value="{{ $data->background }}" autofocus>
+            @error('background')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+            <p class="text-secondary" style="font-size: 12px; margin-top: -5px;">* isi jika ingin ganti gambar</p>
+        </div>
+        <div class="form-group">
+            <label for="about_web" class="control-label mb-1">About Us</label>
+            @error('about_web')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="about_web" type="hidden" name="about_web" value="{{ $data->about_web }}">
+            <trix-editor input="about_web"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="visi" class="control-label mb-1">Visi</label>
+            @error('visi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="visi" type="hidden" name="visi" value="{{ $data->visi }}">
+            <trix-editor input="visi"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="misi" class="control-label mb-1">Misi</label>
+            @error('misi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="misi" type="hidden" name="misi" value="{{ $data->misi }}">
+            <trix-editor input="misi"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="prestasi" class="control-label mb-1">Prestasi</label>
+            @error('prestasi')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <input id="prestasi" type="hidden" name="prestasi" value="{{ $data->prestasi }}">
+            <trix-editor input="prestasi"></trix-editor>
+        </div>
+
+        <div class="form-group">
+            <a href="/admin/profile-desa" class="btn btn-danger rounded">Back</a>
             <button type="submit" class="btn btn-warning rounded">Update</button>
         </div>
     </form>

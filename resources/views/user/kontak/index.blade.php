@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="faq" class="faq content-center">
-      <div class="container">
+      <div class="container mt-4">
 
         <div class="section-title" data-aos="zoom-out">
           <h2>KONTAK KAMI</h2>
@@ -36,7 +36,7 @@
                 @enderror
             </div>
 
-            <div class="form-group w-50 ml-2 mb-0 ">
+            <div class="form-group w-50 mb-0" style="margin-left: 10px">
                 <label for="rt" class="control-label mb-1">RT</label>
                 <input name="rt" type="text" class="form-control mb-2 @error('rt') is-invalid @enderror" value="{{ old('rt') }}">
                 @error('rt')
@@ -46,7 +46,7 @@
                 @enderror
             </div>
 
-            <div class="form-group w-50 ml-2 mb-0">
+            <div class="form-group w-50 mb-0" style="margin-left: 10px">
                 <label for="rw" class="control-label mb-1">RW</label>
                 <input name="rw" type="text" class="form-control mb-2 @error('rw') is-invalid @enderror" value="{{ old('rw') }}">
                 @error('rw')
@@ -55,6 +55,7 @@
                 </div>
                 @enderror
             </div>
+
         </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Isi pesan</label>
